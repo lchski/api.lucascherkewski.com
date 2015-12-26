@@ -5,3 +5,4 @@ VagrantBK
 .ruby-gemset
 .ruby-version
 vendor/
+.env
