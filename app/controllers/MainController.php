@@ -2,10 +2,11 @@
 
 namespace Lchski;
 
+use Lchski\Contracts\Controller;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-class MainController
+class MainController extends BaseController implements Controller
 {
 	/**
 	 * Catch and direct our request to the appropriate function.
@@ -17,14 +18,7 @@ class MainController
 	 */
 	public function __invoke( Request $request, Response $response, array $args )
 	{
-		switch( $request->getMethod() ) {
-			case 'GET':
-				$this->get( $request, $response, $args );
-				break;
-			case 'POST':
-				$this->post( $request, $response, $args );
-				break;
-		}
+		parent::__invoke( $request, $response, $args );
 	}
 
 	/**
@@ -36,6 +30,7 @@ class MainController
 	 */
 	public function get( Request $request, Response $response, array $args )
 	{
-		echo 'HI';
+		$returnedResponse = $response
+			->write(json_encode($args));
 	}
 }

@@ -2,13 +2,10 @@
 
 namespace Lchski;
 
-use Lchski\Contracts\Controller;
-
-class ThingController extends BaseController implements Controller
+class BaseController
 {
 	/**
 	 * Catch and direct our request to the appropriate function.
-	 * Path: '/things/{id}'
 	 *
 	 * @param Request $request
 	 * @param Response $response
@@ -16,6 +13,13 @@ class ThingController extends BaseController implements Controller
 	 */
 	public function __invoke( $request, $response, $args )
 	{
-		parent::__invoke( $request, $response, $args );
+		switch( $request->getMethod() ) {
+			case 'GET':
+				$this->get( $request, $response, $args );
+				break;
+			case 'POST':
+				$this->post( $request, $response, $args );
+				break;
+		}
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Lchski\Interfaces;
+namespace Lchski\Contracts;
 
 
 interface Controller
