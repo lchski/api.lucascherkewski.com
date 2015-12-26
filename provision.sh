@@ -107,6 +107,7 @@ server {
     root         /home/vagrant/code/public;
 
     location / {
+        index index.php index.html;
         try_files $uri $uri/ /index.php$is_args$args;
     }
 
