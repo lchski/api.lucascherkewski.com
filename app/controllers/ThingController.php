@@ -8,7 +8,7 @@ class ThingController extends BaseController implements Controller
 {
 	public function get()
 	{
-		echo "hello";
+		echo "hello" . $this->args['id'];
 	}
 
 	public function post()
