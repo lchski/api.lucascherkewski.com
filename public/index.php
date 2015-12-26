@@ -1,11 +1,10 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
-
-$app = new \Slim\App;
+require __DIR__ . '/../app/bootstrap.php';
 
 $app->get('/', function( $request, $response, $args) {
 	echo 'Yo';
+	echo $_ENV['DB_NAME'];
 });
 
 $app->run();
