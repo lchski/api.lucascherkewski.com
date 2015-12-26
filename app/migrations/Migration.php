@@ -2,20 +2,24 @@
 
 namespace Lchski;
 
+use Illuminate\Database\Capsule\Manager as Capsule;
+
 abstract class Migration
 {
 	/**
-	 * The instance of our Slim app.
+	 * The name of our table.
 	 *
-	 * @var \Slim\App
+	 * @var string
 	 */
-	protected $app;
+	protected $table;
 
-	public function __construct() {
-		// Access our global Slim instance.
-		global $app;
-
-		// Set our Slim instance for our migrations.
-		$this->app = $app;
+	/**
+	 * Drop the table managed by the migration.
+	 *
+	 * @return void
+     */
+	protected function down() {
+		Capsule::schema()
+			->dropIfExists($this->table);
 	}
 }
