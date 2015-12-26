@@ -1,6 +1,6 @@
 <?php
 
-namespace Lchski;
+namespace Lchski\Migrations;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 

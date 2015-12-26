@@ -20,9 +20,11 @@
             "Lchski\\": [
                 "app/middleware/",
                 "app/models/",
-                "app/routes/",
-                "app/migrations/"
-            ]
+                "app/routes/"
+            ],
+			"Lchski\\Migrations\\": [
+				"app/migrations/"
+			]
         }
     }
 }
