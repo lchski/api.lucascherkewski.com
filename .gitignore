@@ -6,3 +6,5 @@ VagrantBK
 .ruby-version
 vendor/
 .env
+*.iml
+.idea/
