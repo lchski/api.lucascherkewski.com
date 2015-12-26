@@ -12,3 +12,6 @@ $c = new \Slim\Container($configuration);
 
 // Boot up our Slim instance.
 $app = new \Slim\App($c);
+
+// Add our global middleware.
+$app->add( new \Lchski\TrailingSlashMiddleware );

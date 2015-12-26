@@ -14,5 +14,14 @@
         "illuminate/database": "^5.2",
         "vlucas/phpdotenv": "^2.1",
         "illuminate/support": "^5.2"
+    },
+    "autoload": {
+    	"psr-4": {
+    		"Lchski\\": [
+				"app/middleware/",
+    			"app/models/",
+    			"app/routes/"
+    		]
+    	}
     }
 }
