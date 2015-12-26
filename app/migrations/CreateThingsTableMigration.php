@@ -14,12 +14,14 @@ class CreateThingsTableMigration extends Migration {
 	 *
 	 * @return void
 	 */
-	public static function up() {
-		Capsule::schema()->create($this->table, function(Blueprint $table) {
-			$table->increments('id');
-			$table->string('title');
-			$table->timestamps();
-		});
+	public function up() {
+		if (! Capsule::schema()->hasTable($this->table)) {
+			Capsule::schema()->create($this->table, function (Blueprint $table) {
+				$table->increments('id');
+				$table->string('title');
+				$table->timestamps();
+			});
+		}
 	}
 
 }
