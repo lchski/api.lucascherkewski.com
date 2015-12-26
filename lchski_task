@@ -17,5 +17,5 @@ if ( isset($cli['m']) && ! empty($cli['m']) ) {
 
 	call_user_func(array($migration_class, $migration_properties[1]));
 
-	echo "Migration $migration_properties[0], in direction $migration_properties[1], run!";
+	echo "Migration $migration_properties[0], in direction $migration_properties[1], run!\n";
 }
