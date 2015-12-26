@@ -25,6 +25,9 @@
             ],
 			"Lchski\\Migrations\\": [
 				"app/migrations/"
+			],
+			"Lchski\\Contracts\\": [
+				"app/contracts/"
 			]
         }
     }
