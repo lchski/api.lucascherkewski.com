@@ -14,7 +14,7 @@ class CreateThingsTableMigration extends Migration {
 	 *
 	 * @return void
 	 */
-	public function up() {
+	public static function up() {
 		Capsule::schema()->create($this->table, function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('title');

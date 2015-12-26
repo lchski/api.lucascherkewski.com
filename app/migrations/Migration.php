@@ -18,7 +18,7 @@ abstract class Migration
 	 *
 	 * @return void
      */
-	protected function down() {
+	protected static function down() {
 		Capsule::schema()
 			->dropIfExists($this->table);
 	}
