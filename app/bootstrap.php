@@ -13,5 +13,5 @@ $dotenv->load();
 // Load any other classes or such that need special configuration.
 require __DIR__ . '/bootstrap/database.php';
 
-// Boot up our Slim instance.
-$app = new \Slim\App;
+// Load our Slim config and booter.
+require __DIR__ . '/bootstrap/slim.php';
