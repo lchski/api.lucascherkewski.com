@@ -1,14 +1,14 @@
 {
-	"name": "lchski/lucascherkewski.com-api",
-	"description": "A Slim API for lucascherkewski.com’s content.",
-	"type": "project",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Lucas Cherkewski",
-			"email": "lucas@lucascherkewski.com"
-		}
-	],
+    "name": "lchski/lucascherkewski.com-api",
+    "description": "A Slim API for lucascherkewski.com’s content.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lucas Cherkewski",
+            "email": "lucas@lucascherkewski.com"
+        }
+    ],
     "require": {
         "slim/slim": "^3.0",
         "illuminate/database": "^5.2",
@@ -16,12 +16,13 @@
         "illuminate/support": "^5.2"
     },
     "autoload": {
-    	"psr-4": {
-    		"Lchski\\": [
-				"app/middleware/",
-    			"app/models/",
-    			"app/routes/"
-    		]
-    	}
+        "psr-4": {
+            "Lchski\\": [
+                "app/middleware/",
+                "app/models/",
+                "app/routes/",
+                "app/migrations/"
+            ]
+        }
     }
 }
