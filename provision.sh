@@ -120,6 +120,7 @@ server {
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/lucascherkewski.com.php.error.log";
         fastcgi_index index.php;
         fastcgi_pass unix:/var/run/php5-fpm.sock;
     }
