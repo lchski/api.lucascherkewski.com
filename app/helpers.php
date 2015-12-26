@@ -1,5 +1,7 @@
 <?php
 
+use \Illuminate\Support\Str;
+
 /**
  * Laravel's env() helper.
  * Source: https://github.com/laravel/framework/blob/5.2/src/Illuminate/Foundation/helpers.php

@@ -2,6 +2,7 @@
     "require": {
         "slim/slim": "^3.0",
         "illuminate/database": "^5.2",
-        "vlucas/phpdotenv": "^2.1"
+        "vlucas/phpdotenv": "^2.1",
+        "illuminate/support": "^5.2"
     }
 }
