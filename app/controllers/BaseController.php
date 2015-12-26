@@ -5,8 +5,29 @@ namespace Lchski;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-class BaseController
+abstract class BaseController
 {
+	/**
+	 * Our Slim Request object.
+	 *
+	 * @var Request $request
+	 */
+	protected $request;
+
+	/**
+	 * Our Slim Response object.
+	 *
+	 * @var Response $response
+	 */
+	protected $response;
+
+	/**
+	 * The arguments to our Slim route.
+	 *
+	 * @var array $args
+	 */
+	protected $args;
+
 	/**
 	 * Catch and direct our request to the appropriate function.
 	 *
@@ -16,12 +37,22 @@ class BaseController
 	 */
 	public function __invoke( Request $request, Response $response, array $args )
 	{
+		/**
+		 * Set our controllers parameters to the route's.
+		 */
+		$this->request  = $request;
+		$this->response = $response;
+		$this->args     = $args;
+
+		/**
+		 * Pass request off to the proper function.
+		 */
 		switch( $request->getMethod() ) {
 			case 'GET':
-				$this->get( $request, $response, $args );
+				$this->get();
 				break;
 			case 'POST':
-				$this->post( $request, $response, $args );
+				$this->post();
 				break;
 		}
 	}
