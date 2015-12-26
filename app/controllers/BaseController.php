@@ -2,10 +2,11 @@
 
 namespace Lchski;
 
+use Lchski\Contracts\Controller;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-abstract class BaseController
+abstract class BaseController implements Controller
 {
 	/**
 	 * Our Slim Request object.
