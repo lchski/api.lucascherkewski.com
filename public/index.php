@@ -5,9 +5,8 @@ define('APP_PATH', __DIR__ . '/../app/');
 
 require APP_PATH . 'bootstrap.php';
 
-$app->get('/', function( $request, $response, $args) {
-	echo 'Yo';
-	echo $_ENV['DB_NAME'];
-});
+$app->any('/', '\\Lchski\\MainController');
+
+$app->any('/things/{id}', '\\Lchski\\ThingController');
 
 $app->run();
