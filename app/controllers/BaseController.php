@@ -2,6 +2,9 @@
 
 namespace Lchski;
 
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
+
 class BaseController
 {
 	/**
@@ -11,7 +14,7 @@ class BaseController
 	 * @param Response $response
 	 * @param array $args
 	 */
-	public function __invoke( $request, $response, $args )
+	public function __invoke( Request $request, Response $response, array $args )
 	{
 		switch( $request->getMethod() ) {
 			case 'GET':
