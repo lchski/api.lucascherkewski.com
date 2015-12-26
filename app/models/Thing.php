@@ -2,9 +2,9 @@
 
 namespace Lchski;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Model;
 
-class Thing extends Eloquent
+class Thing extends Model
 {
-	
+
 }
