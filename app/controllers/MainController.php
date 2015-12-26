@@ -13,7 +13,7 @@ class MainController extends BaseController implements Controller
 	public function get()
 	{
 		$returnedResponse = $this->response
-			->write('yolo');
+			->write('This is an API. No touchy!');
 	}
 
 	public function post()
