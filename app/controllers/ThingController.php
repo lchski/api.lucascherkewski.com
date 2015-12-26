@@ -10,9 +10,4 @@ class ThingController extends BaseController implements Controller
 	{
 		echo "hello" . $this->args['id'];
 	}
-
-	public function post()
-	{
-
-	}
 }

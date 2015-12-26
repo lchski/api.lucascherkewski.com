@@ -15,9 +15,4 @@ class MainController extends BaseController implements Controller
 		$returnedResponse = $this->response
 			->write('This is an API. No touchy!');
 	}
-
-	public function post()
-	{
-		// TODO: Implement post() method.
-	}
 }
