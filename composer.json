@@ -21,7 +21,7 @@
             "Lchski\\": [
                 "app/middleware/",
                 "app/models/",
-                "app/routes/"
+                "app/controllers/"
             ],
 			"Lchski\\Migrations\\": [
 				"app/migrations/"
