@@ -1,4 +1,14 @@
 {
+	"name": "lchski/lucascherkewski.com-api",
+	"description": "A Slim API for lucascherkewski.com’s content.",
+	"type": "project",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Lucas Cherkewski",
+			"email": "lucas@lucascherkewski.com"
+		}
+	],
     "require": {
         "slim/slim": "^3.0",
         "illuminate/database": "^5.2",
