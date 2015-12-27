@@ -7,6 +7,7 @@ $configuration = [
 	'settings' => [
 		'displayErrorDetails' => env('SLIM_DEBUG', false),
 	],
+	// Create our PhpOrient OrientDB client as part of the DIC.
 	'orientdb' => function( $c ) {
 		$phporient= new PhpOrient();
 		$phporient->configure( array(
@@ -18,6 +19,7 @@ $configuration = [
 		$phporient->connect();
 		return $phporient;
 	},
+	// Register factory for creating MigrationController.
 	'migration_controller' => new \Lchski\Factories\MigrationControllerFactory
 ];
 
