@@ -54,7 +54,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # install some base packages
   config.vm.provision :shell, path: "provision.sh"
 
-  confg.vm.provision "ansible" do |ansible|
+  config.vm.provision "ansible" do |ansible|
   	ansible.verbose = "v"
   	ansible.playbook = "playbook.yml"
   end
