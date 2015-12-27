@@ -16,7 +16,8 @@ $configuration = [
 			'port'     => env('DB_PORT', 2424),
 		) );
 		return $phporient;
-	}
+	},
+	'migration_controller' => new \Lchski\Factories\MigrationControllerFactory
 ];
 
 // Create our custom Slim container.

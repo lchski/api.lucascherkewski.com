@@ -29,6 +29,9 @@
 			],
 			"Lchski\\Contracts\\": [
 				"app/contracts/"
+			],
+			"Lchski\\Factories\\": [
+				"app/controllers/factories/"
 			]
         }
     }
