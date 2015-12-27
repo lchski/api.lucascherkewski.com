@@ -11,6 +11,6 @@ class CreateDatabaseMigration extends BaseMigration implements Migration
 	 */
 	public function up()
 	{
-		$this->orientdb->dbCreate(env('DB_NAME', 'lucascherkewskicom'));
+		$this->phporient->dbCreate(env('DB_NAME', 'lucascherkewskicom'));
 	}
 }

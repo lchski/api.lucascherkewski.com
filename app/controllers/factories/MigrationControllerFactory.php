@@ -19,11 +19,11 @@ class MigrationControllerFactory
 	public function __invoke(Container $container)
 	{
 		// Check if our OrientDB client has been properly configured.
-		if (!$container->has('orientdb')) {
-			throw new \RuntimeException("DI container does not provide `orientdb`");
+		if (!$container->has('phporient')) {
+			throw new \RuntimeException("DI container does not provide `phporient`");
 		}
 
-		$orientdb = $container->get('orientdb');
+		$orientdb = $container->get('phporient');
 
 		// Create our MigrationController, passing in the OrientDB client to its __construct().
 		return new MigrationController($orientdb);

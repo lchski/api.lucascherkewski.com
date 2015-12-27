@@ -8,20 +8,20 @@ use PhpOrient\PhpOrient;
 class MigrationController extends BaseController implements Controller
 {
 	/**
-	 * The DIC instance of our OrientDB client.
+	 * The DIC instance of our PhpOrient.
 	 *
 	 * @var PhpOrient
 	 */
-	protected $orientdb;
+	protected $phporient;
 
 	/**
-	 * MigrationController constructor. Grabs the DIC OrientDB client from the Factory, sets it as a property.
+	 * MigrationController constructor. Grabs the DIC PhpOrient instance from the Factory, sets it as a property.
 	 *
-	 * @param PhpOrient $orientdb
+	 * @param PhpOrient $phporient
 	 */
-	public function __construct(PhpOrient $orientdb)
+	public function __construct(PhpOrient $phporient)
 	{
-		$this->orientdb = $orientdb;
+		$this->phporient = $phporient;
 	}
 
 	/**
@@ -33,7 +33,7 @@ class MigrationController extends BaseController implements Controller
 		 * Extract Migration class name and create a new instance of it, passing in our OrientDB client.
 		 */
 		$migration_class_name = '\\Lchski\\Migrations\\' . $this->args['migrationName'] . 'Migration';
-		$migration_class      = new $migration_class_name($this->orientdb);
+		$migration_class      = new $migration_class_name($this->phporient);
 
 		call_user_func(array($migration_class, $this->args['migrationDirection']));
 

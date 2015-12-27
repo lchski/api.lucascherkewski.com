@@ -7,5 +7,5 @@ use PhpOrient\PhpOrient;
 
 interface Migration
 {
-	public function __construct( PhpOrient $orientdb );
+	public function __construct( PhpOrient $phporient );
 }

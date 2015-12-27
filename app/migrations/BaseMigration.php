@@ -10,14 +10,14 @@ abstract class BaseMigration implements Migration
 	/**
 	 * @var PhpOrient
 	 */
-	protected $orientdb;
+	protected $phporient;
 
 	/**
 	 * Grab the OrientDB client and set it as a property, accessible by any Migration.
-	 * @param PhpOrient $orientdb
+	 * @param PhpOrient $phporient
 	 */
-	public function __construct( PhpOrient $orientdb )
+	public function __construct( PhpOrient $phporient )
 	{
-		$this->orientdb = $orientdb;
+		$this->phporient = $phporient;
 	}
 }
