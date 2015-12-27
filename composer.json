@@ -32,6 +32,9 @@
 			],
 			"Lchski\\Factories\\": [
 				"app/controllers/factories/"
+			],
+			"Lchski\\Helpers\\": [
+				"app/helpers/"
 			]
         }
     }

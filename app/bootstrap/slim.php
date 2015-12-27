@@ -8,7 +8,7 @@ $configuration = [
 		'displayErrorDetails' => env('SLIM_DEBUG', false),
 	],
 	// Create our PhpOrient OrientDB client as part of the DIC.
-	'orientdb' => function( $c ) {
+	'phporient' => function( $c ) {
 		$phporient= new PhpOrient();
 		$phporient->configure( array(
 			'hostname' => env('DB_HOST', 'localhost'),
@@ -20,7 +20,8 @@ $configuration = [
 		return $phporient;
 	},
 	// Register factory for creating MigrationController.
-	'migration_controller' => new \Lchski\Factories\MigrationControllerFactory
+	'migration_controller' => new \Lchski\Factories\MigrationControllerFactory,
+	'orientdb_helper' => new \Lchski\Helpers\OrientDbHelper,
 ];
 
 // Create our custom Slim container.
