@@ -9,9 +9,9 @@ class Migration
 	/**
 	 * @var PhpOrient
 	 */
-	protected orientdb;
+	protected $orientdb;
 
-	protected function __construct( PhpOrient $orientdb )
+	public function __construct( PhpOrient $orientdb )
 	{
 		$this->orientdb = $orientdb;
 	}
