@@ -15,6 +15,7 @@ $configuration = [
 			'password' => env('DB_PASSWORD', 'root'),
 			'port'     => env('DB_PORT', 2424),
 		) );
+		$phporient->connect();
 		return $phporient;
 	},
 	'migration_controller' => new \Lchski\Factories\MigrationControllerFactory
