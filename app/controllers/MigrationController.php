@@ -19,11 +19,11 @@ class MigrationController extends BaseController implements Controller
 	 */
 	public function get()
 	{
-		$migration_class_name = '\\Lchski\\Migrations\\' . $args['migrationName'] . 'Migration';
+		$migration_class_name = '\\Lchski\\Migrations\\' . $this->args['migrationName'] . 'Migration';
 		$migration_class      = new $migration_class_name($this->orientdb);
 
-		call_user_func($migration_class, $args['migrationDirection']);
+		call_user_func(array($migration_class, $this->args['migrationDirection']));
 
-		$this->response->write('Migration '. $args['migrationName'] . ', in direction ' . $args['migrationDirection'] . ', run!');
+		$this->response->write('Migration '. $this->args['migrationName'] . ', in direction ' . $this->args['migrationDirection'] . ', run!');
 	}
 }
