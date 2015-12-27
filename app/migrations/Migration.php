@@ -7,7 +7,7 @@ use PhpOrient\PhpOrient;
 class Migration
 {
 	/**
-	 * @var App
+	 * @var PhpOrient
 	 */
 	protected orientdb;
 
