@@ -2,6 +2,7 @@
 
 namespace Lchski\Migrations;
 
+use Lchski\Contracts\DbHelper;
 use Lchski\Contracts\Migration;
 use PhpOrient\PhpOrient;
 
@@ -17,10 +18,11 @@ class CreateDatabaseMigration extends BaseMigration implements Migration
 	/**
 	 * CreateDatabaseMigration constructor.
 	 * @param PhpOrient $phporient
+	 * @param DbHelper $dbHelper
 	 */
-	public function __construct(PhpOrient $phporient)
+	public function __construct(PhpOrient $phporient, DbHelper $dbHelper)
 	{
-		parent::__construct($phporient);
+		parent::__construct($phporient, $dbHelper);
 
 		$this->database = env('DB_NAME', 'lucascherkewskicom');
 	}

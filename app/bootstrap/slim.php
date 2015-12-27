@@ -21,7 +21,10 @@ $configuration = [
 	},
 	// Register factory for creating MigrationController.
 	'migration_controller' => new \Lchski\Factories\MigrationControllerFactory,
-	'orientdb_helper' => new \Lchski\Helpers\OrientDbHelper,
+	'orientdb_helper' => function( $c ) {
+		$dbHelper = new \Lchski\Helpers\OrientDbHelper();
+		return $dbHelper;
+	},
 ];
 
 // Create our custom Slim container.

@@ -30,6 +30,8 @@ class OrientDbHelper implements DbHelper
 		}
 
 		$this->phporient = $container->get('phporient');
+
+		$this->phporient->dbOpen(env('DB_NAME', 'lucascherkewskicom'));
 	}
 
 	/**
@@ -39,7 +41,9 @@ class OrientDbHelper implements DbHelper
 	 * @return mixed
 	 */
 	public function createNode(array $nodeProperties)
-	{}
+	{
+		$this->phporient->command('CREATE VERTEX V CONTENT' . json_encode($nodeProperties));
+	}
 
 	/**
 	 * Create a connection between two nodes.
