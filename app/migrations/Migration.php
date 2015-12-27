@@ -2,9 +2,10 @@
 
 namespace Lchski\Migrations;
 
+use Lchski\Contracts\Migration;
 use PhpOrient\PhpOrient;
 
-abstract class BaseMigration
+abstract class BaseMigration implements Migration
 {
 	/**
 	 * @var PhpOrient

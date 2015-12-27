@@ -2,7 +2,9 @@
 
 namespace Lchski\Migrations;
 
-class CreateDatabaseMigration extends BaseMigration
+use Lchski\Contracts\Migration;
+
+class CreateDatabaseMigration extends BaseMigration implements Migration
 {
 	/**
 	 * Using the OrientDB client from our DIC, create the database specified by the ENV variables.
