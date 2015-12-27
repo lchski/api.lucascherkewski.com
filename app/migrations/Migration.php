@@ -1,25 +1,15 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: lucas
+ * Date: 2015-12-26
+ * Time: 11:47 PM
+ */
 
 namespace Lchski\Migrations;
 
-use Illuminate\Database\Capsule\Manager as Capsule;
 
-abstract class Migration
+class Migration
 {
-	/**
-	 * The name of our table.
-	 *
-	 * @var string
-	 */
-	protected $table;
 
-	/**
-	 * Drop the table managed by the migration.
-	 *
-	 * @return void
-     */
-	public function down() {
-		Capsule::schema()
-			->dropIfExists($this->table);
-	}
 }
