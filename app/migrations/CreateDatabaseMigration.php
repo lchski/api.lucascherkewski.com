@@ -3,6 +3,7 @@
 namespace Lchski\Migrations;
 
 use Lchski\Contracts\Migration;
+use PhpOrient\PhpOrient;
 
 class CreateDatabaseMigration extends BaseMigration implements Migration
 {
