@@ -20,6 +20,6 @@ class CreateVertexMigration extends BaseMigration implements Migration
 	 */
 	public function down()
 	{
-
+		$this->dbHelper->deleteNodes(array('name' => 'DummyVertex'));
 	}
 }
