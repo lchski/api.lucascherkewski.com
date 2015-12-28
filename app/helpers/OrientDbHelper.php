@@ -29,8 +29,6 @@ class OrientDbHelper implements DbHelper
 			throw new \RuntimeException("DI container does not provide `phporient`");
 		}
 
-		error_log('hello');
-
 		$this->phporient = $container->get('phporient');
 
 		$this->phporient->dbOpen(env('DB_NAME', 'lucascherkewskicom'));
