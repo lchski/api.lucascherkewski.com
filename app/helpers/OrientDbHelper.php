@@ -50,10 +50,11 @@ class OrientDbHelper implements DbHelper
 	/**
 	 * Create a connection between two nodes.
 	 *
+	 * @param array $connectionParameters
 	 * @param array $connectionProperties
 	 * @return mixed
 	 */
-	public function createConnection(array $connectionProperties = array('from' => '', 'to' => ''))
+	public function createConnection(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = array())
 	{}
 
 	/**
@@ -76,10 +77,11 @@ class OrientDbHelper implements DbHelper
 	/**
 	 * Get one or more connections based on properties.
 	 *
+	 * @param array $connectionParameters
 	 * @param array $connectionProperties
 	 * @return mixed
 	 */
-	public function getConnections(array $connectionProperties = array('from' => '', 'to' => ''))
+	public function getConnections(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = array())
 	{}
 
 	/**
@@ -104,9 +106,10 @@ class OrientDbHelper implements DbHelper
 	/**
 	 * Delete one or more connections based on properties.
 	 *
+	 * @param array $connectionParameters
 	 * @param array $connectionProperties
 	 * @return mixed
 	 */
-	public function deleteConnections(array $connectionProperties)
+	public function deleteConnections(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = array())
 	{}
 }

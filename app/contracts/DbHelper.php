@@ -26,10 +26,11 @@ interface DbHelper
 	/**
 	 * Create a connection between two nodes.
 	 *
+	 * @param array $connectionParameters
 	 * @param array $connectionProperties
 	 * @return mixed
 	 */
-	function createConnection(array $connectionProperties = array('from' => '', 'to' => ''));
+	function createConnection(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = array());
 
 	/**
 	 * Get one or more nodes based on properties.
@@ -49,10 +50,11 @@ interface DbHelper
 	/**
 	 * Get one or more connections based on properties.
 	 *
+	 * @param array $connectionParameters
 	 * @param array $connectionProperties
 	 * @return mixed
 	 */
-	function getConnections(array $connectionProperties = array('from' => '', 'to' => ''));
+	function getConnections(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = array());
 
 	/**
 	 * Get all connections.
@@ -72,8 +74,9 @@ interface DbHelper
 	/**
 	 * Delete one or more connections based on properties.
 	 *
+	 * @param array $connectionParameters
 	 * @param array $connectionProperties
 	 * @return mixed
 	 */
-	function deleteConnections(array $connectionProperties);
+	function deleteConnections(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = array());
 }
