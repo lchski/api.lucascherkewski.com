@@ -22,8 +22,7 @@ $configuration = [
 	// Register factory for creating MigrationController.
 	'migration_controller' => new \Lchski\Factories\MigrationControllerFactory,
 	'orientdb_helper' => function( $c ) {
-		$dbHelper = new \Lchski\Helpers\OrientDbHelper();
-		return $dbHelper;
+		return new \Lchski\Helpers\OrientDbHelper($c);
 	},
 ];
 

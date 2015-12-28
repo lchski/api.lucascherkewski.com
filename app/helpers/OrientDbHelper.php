@@ -22,7 +22,7 @@ class OrientDbHelper implements DbHelper
 	 * @param Container $container
 	 * @return mixed
 	 */
-	public function __invoke(Container $container)
+	public function __construct(Container $container)
 	{
 		// Check if our PhpOrient instance has been properly configured.
 		if (!$container->has('phporient')) {

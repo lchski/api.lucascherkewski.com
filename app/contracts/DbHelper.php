@@ -13,7 +13,7 @@ interface DbHelper
 	 * @param Container $container
 	 * @return mixed
 	 */
-	function __invoke(Container $container);
+	function __construct(Container $container);
 
 	/**
 	 * Create a node, with a variable set of properties.
