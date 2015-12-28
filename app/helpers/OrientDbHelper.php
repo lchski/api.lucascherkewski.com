@@ -97,7 +97,9 @@ class OrientDbHelper implements DbHelper
 	 * @return mixed
 	 */
 	public function deleteNodes(array $nodeProperties)
-	{}
+	{
+		$this->phporient->command('DELETE VERTEX WHERE ' . SqlHelper::arrayToSql($nodeProperties));
+	}
 
 	/**
 	 * Delete one or more connections based on properties.
