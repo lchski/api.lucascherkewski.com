@@ -31,7 +31,8 @@ class OrientDbHelper implements DbHelper
 
 		$this->phporient = $container->get('phporient');
 
-		$this->phporient->dbOpen(env('DB_NAME', 'lucascherkewskicom'));
+		if ( $this->phporient->dbExists(env('DB_NAME', 'lucascherkewskicom')) )
+			$this->phporient->dbOpen(env('DB_NAME', 'lucascherkewskicom'));
 	}
 
 	/**
