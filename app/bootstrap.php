@@ -12,3 +12,7 @@ $dotenv->load();
 
 // Load our Slim config and booter.
 require __DIR__ . '/bootstrap/slim.php';
+
+require __DIR__ . '/routes.php';
+
+$app->run();
