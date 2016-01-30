@@ -14,7 +14,8 @@
         "illuminate/database": "^5.2",
         "vlucas/phpdotenv": "^2.1",
         "illuminate/support": "^5.2",
-        "nategood/commando": "^0.2.7"
+        "nategood/commando": "^0.2.7",
+        "ostico/phporient": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -28,6 +29,12 @@
 			],
 			"Lchski\\Contracts\\": [
 				"app/contracts/"
+			],
+			"Lchski\\Factories\\": [
+				"app/controllers/factories/"
+			],
+			"Lchski\\Helpers\\": [
+				"app/helpers/"
 			]
         }
     }

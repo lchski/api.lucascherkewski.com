@@ -10,8 +10,9 @@ require __DIR__ . '/helpers.php';
 $dotenv = new \Dotenv\Dotenv(__DIR__ . '/../');
 $dotenv->load();
 
-// Load any other classes or such that need special configuration.
-require __DIR__ . '/bootstrap/database.php';
-
 // Load our Slim config and booter.
 require __DIR__ . '/bootstrap/slim.php';
+
+require __DIR__ . '/routes.php';
+
+$app->run();
