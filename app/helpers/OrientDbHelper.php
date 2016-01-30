@@ -54,7 +54,24 @@ class OrientDbHelper implements DbHelper
 	 * @return mixed
 	 */
 	public function createConnection(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = array())
-	{}
+	{
+		// Our base command.
+		$command = 'CREATE EDGE E';
+
+		// Add our source.
+		if (isset($connectionParameters['from']))
+			$command .= ' FROM ' . $connectionParameters['from'];
+
+		// Add our destination.
+		if (isset($connectionParameters['to']))
+			$command .= ' TO ' . $connectionParameters['to'];
+
+		// If we've got special content for our connection, add it.
+		if (isset($connectionProperties))
+			$command .= ' CONTENT ' . json_encode($connectionProperties);
+
+		$this->phporient->command($command);
+	}
 
 	/**
 	 * Get one or more nodes based on properties.
