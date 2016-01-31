@@ -126,6 +126,26 @@ class OrientDbHelper implements DbHelper
 	 * @param array $connectionProperties
 	 * @return mixed
 	 */
-	public function deleteConnections(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = array())
-	{}
+	public function deleteConnections(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = null)
+	{
+		// Our base command.
+		$command = 'DELETE EDGE';
+
+		// Add our source.
+		if (isset($connectionParameters['from']))
+			$command .= ' FROM ' . $connectionParameters['from'];
+
+		// Add our destination.
+		if (isset($connectionParameters['to']))
+			$command .= ' TO ' . $connectionParameters['to'];
+
+		error_log($command);
+
+		// If we've got special conditions to meet for our connection, add them.
+		// FIXME: JSON isn't the format ODB expects.
+		if (isset($connectionProperties))
+			$command .= ' WHERE ' . json_encode($connectionProperties);
+
+		$this->phporient->command($command);
+	}
 }

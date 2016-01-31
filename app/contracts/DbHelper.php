@@ -78,5 +78,5 @@ interface DbHelper
 	 * @param array $connectionProperties
 	 * @return mixed
 	 */
-	function deleteConnections(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = array());
+	function deleteConnections(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = null);
 }
