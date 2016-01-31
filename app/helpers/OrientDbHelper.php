@@ -109,7 +109,7 @@ class OrientDbHelper implements DbHelper
 	 */
 	public function getAllConnections()
 	{
-		return $this->phporient->query('SELECT * FROM E limit 50');
+		return $this->phporient->query('SELECT * FROM E');
 	}
 
 	/**
