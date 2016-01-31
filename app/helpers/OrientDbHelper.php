@@ -88,7 +88,9 @@ class OrientDbHelper implements DbHelper
 	 * @return mixed
 	 */
 	public function getAllNodes()
-	{}
+	{
+		return $this->phporient->command('SELECT * FROM V');
+	}
 
 	/**
 	 * Get one or more connections based on properties.
