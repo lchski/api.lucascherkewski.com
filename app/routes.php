@@ -10,9 +10,11 @@ $app->group('/migrations', function() {
 // All our API routes, in one place.
 $app->group('/api', function() {
 	$this->get('/things', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args ) {
+		$dbHelper = $this->get('orientdb_helper');
+
 		$response
 			->write(
-				json_encode( \Lchski\Thing::all() )
+				json_encode( $dbHelper->getAllNodes() )
 			);
 	});
 
