@@ -2,7 +2,6 @@
 
 namespace Lchski\Helpers;
 
-
 use Lchski\Contracts\DbHelper;
 use PhpOrient\PhpOrient;
 use Slim\Container;
