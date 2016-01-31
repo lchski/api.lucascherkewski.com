@@ -20,6 +20,6 @@ class CreateConnectionMigration extends BaseMigration implements Migration
 	 */
 	public function down()
 	{
-		$this->dbHelper->deleteNodes(array('from' => "(select from V where name = 'DummyVertex')", 'to' => "(select from V where name = 'DummyVertex')"));
+		$this->dbHelper->deleteConnections(array('from' => "(select from V where name = 'DummyVertex')", 'to' => "(select from V where name = 'DummyVertex')"));
 	}
 }
