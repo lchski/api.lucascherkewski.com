@@ -10,6 +10,11 @@ engines:
     enabled: true
   phpmd:
     enabled: true
+    checks:
+      Naming/ShortMethodName:
+        enabled: false
+    exclude_fingerprints:
+    - 9cafb25531c183871956db14b109d22e
   phpcodesniffer:
     enabled: true
     config:
