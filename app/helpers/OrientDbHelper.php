@@ -89,7 +89,7 @@ class OrientDbHelper implements DbHelper
 	 */
 	public function getAllNodes()
 	{
-		return $this->phporient->command('SELECT * FROM V');
+		return $this->phporient->query('SELECT * FROM V');
 	}
 
 	/**
