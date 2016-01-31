@@ -109,6 +109,7 @@ class OrientDbHelper implements DbHelper
 	 */
 	public function getAllConnections()
 	{
+		// FIXME implement limits/range handling (defaults to 20)
 		return $this->phporient->query('SELECT * FROM E');
 	}
 
