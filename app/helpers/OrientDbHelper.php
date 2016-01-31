@@ -108,7 +108,9 @@ class OrientDbHelper implements DbHelper
 	 * @return mixed
 	 */
 	public function getAllConnections()
-	{}
+	{
+		return $this->phporient->query('SELECT * FROM E limit 50');
+	}
 
 	/**
 	 * Delete one or more nodes based on properties.
