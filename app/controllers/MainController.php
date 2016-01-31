@@ -12,7 +12,7 @@ class MainController extends BaseController implements Controller
 	 */
 	public function get()
 	{
-		$returnedResponse = $this->response
+		return $this->response
 			->write('This is an API. No touchy!');
 	}
 }
