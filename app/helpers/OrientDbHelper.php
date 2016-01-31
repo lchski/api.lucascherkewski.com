@@ -141,8 +141,6 @@ class OrientDbHelper implements DbHelper
 		if (isset($connectionParameters['to']))
 			$command .= ' TO ' . $connectionParameters['to'];
 
-		error_log($command);
-
 		// If we've got special conditions to meet for our connection, add them.
 		// FIXME: JSON isn't the format ODB expects.
 		if (isset($connectionProperties))
