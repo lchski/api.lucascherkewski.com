@@ -12,7 +12,8 @@ $app->group('/api', function() {
 	$this->get('/things', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args ) {
 		$dbHelper = $this->get('orientdb_helper');
 
-		$response
+		return $response
+			->withHeader('Content-type', 'application/json')
 			->write(
 				json_encode( $dbHelper->getAllNodes() )
 			);
