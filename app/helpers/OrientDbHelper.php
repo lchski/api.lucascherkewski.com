@@ -88,9 +88,9 @@ class OrientDbHelper implements DbHelper
 	 *
 	 * @return mixed
 	 */
-	public function getAllNodes()
+	public function getAllNodes($limit = 20)
 	{
-		return $this->phporient->query('SELECT * FROM V');
+		return $this->phporient->query('SELECT * FROM V LIMIT' . $limit);
 	}
 
 	/**
@@ -108,10 +108,9 @@ class OrientDbHelper implements DbHelper
 	 *
 	 * @return mixed
 	 */
-	public function getAllConnections()
+	public function getAllConnections($limit = 20)
 	{
-		// FIXME implement limits/range handling (defaults to 20)
-		return $this->phporient->query('SELECT * FROM E');
+		return $this->phporient->query('SELECT * FROM E LIMIT ' . $limit);
 	}
 
 	/**
