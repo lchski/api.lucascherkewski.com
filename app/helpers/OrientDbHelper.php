@@ -43,7 +43,7 @@ class OrientDbHelper implements DbHelper
 	 */
 	public function createNode(array $nodeProperties)
 	{
-		$this->phporient->command('CREATE VERTEX V CONTENT ' . json_encode($nodeProperties));
+		return $this->phporient->command('CREATE VERTEX V CONTENT ' . json_encode($nodeProperties));
 	}
 
 	/**
@@ -70,7 +70,7 @@ class OrientDbHelper implements DbHelper
 		if (isset($connectionProperties))
 			$command .= ' CONTENT ' . json_encode($connectionProperties);
 
-		$this->phporient->command($command);
+		return $this->phporient->command($command);
 	}
 
 	/**
@@ -81,7 +81,7 @@ class OrientDbHelper implements DbHelper
 	 */
 	public function getNodes(array $nodeProperties)
 	{
-		$this->phporient->query('SELECT * from VERTEX WHERE ' . SqlHelper::arrayToSql($nodeProperties));
+		return $this->phporient->query('SELECT * from VERTEX WHERE ' . SqlHelper::arrayToSql($nodeProperties));
 	}
 
 	/**
@@ -123,7 +123,7 @@ class OrientDbHelper implements DbHelper
 	 */
 	public function deleteNodes(array $nodeProperties)
 	{
-		$this->phporient->command('DELETE VERTEX WHERE ' . SqlHelper::arrayToSql($nodeProperties));
+		return $this->phporient->command('DELETE VERTEX WHERE ' . SqlHelper::arrayToSql($nodeProperties));
 	}
 
 	/**
@@ -151,6 +151,6 @@ class OrientDbHelper implements DbHelper
 		if (isset($connectionProperties))
 			$command .= ' WHERE ' . json_encode($connectionProperties);
 
-		$this->phporient->command($command);
+		return $this->phporient->command($command);
 	}
 }
