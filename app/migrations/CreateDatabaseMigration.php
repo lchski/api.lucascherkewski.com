@@ -32,6 +32,7 @@ class CreateDatabaseMigration extends BaseMigration implements Migration
 	 */
 	public function up()
 	{
+		$this->phporient->connect();
 		if ( ! $this->phporient->dbExists($this->database) )
 			$this->phporient->dbCreate($this->database);
 	}
@@ -41,6 +42,7 @@ class CreateDatabaseMigration extends BaseMigration implements Migration
 	 */
 	public function down()
 	{
+		$this->phporient->connect();
 		if ( $this->phporient->dbExists($this->database) )
 			$this->phporient->dbDrop($this->database);
 	}
