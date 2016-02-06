@@ -14,7 +14,7 @@ class OrientSqlHelper
 	 * @param array $sourceArray
 	 * @return string
 	 */
-	public static function arrayToSql(array $sourceArray)
+	public function arrayToSql(array $sourceArray)
 	{
 		// Create a temporary array, where we'll remap the items.
 		$tempArray = array();
@@ -24,4 +24,5 @@ class OrientSqlHelper
 		// Convert our temporary array to the string.
 		return implode(', ', $tempArray);
 	}
+
 }
