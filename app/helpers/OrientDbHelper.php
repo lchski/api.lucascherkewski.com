@@ -90,7 +90,7 @@ class OrientDbHelper implements DbHelper
 	 */
 	public function getAllNodes($limit = 20)
 	{
-		return $this->phporient->query('SELECT * FROM V LIMIT' . $limit);
+		return $this->phporient->query('SELECT * FROM V LIMIT ' . $limit);
 	}
 
 	/**
