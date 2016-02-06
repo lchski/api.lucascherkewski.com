@@ -114,8 +114,21 @@ class OrientDbHelper implements DbHelper
 	 * @param array $connectionProperties
 	 * @return mixed
 	 */
-	public function getConnections(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = array())
-	{}
+	public function getConnections(array $connectionParameters = array('from' => array(), 'to' => array()), array $connectionProperties = array())
+	{
+        // Our base command
+        $command = 'SELECT expand( ';
+
+        // Check if we're going out
+        if (isset($connectionParameters['from']) && ! empty($connectionParameters['from']))
+            $command .= ' out() ) FROM V WHERE ' . $this->sqlhelper->arrayToSql($connectionParameters['from']);
+
+        // Check if we're going in
+        if (isset($connectionParameters['to']) && ! empty($connectionParameters['to']))
+            $command .= ' in() ) FROM V WHERE ' . $this->sqlhelper->arrayToSql($connectionParameters['to']);
+
+        return $this->phporient->command($command);
+    }
 
 	/**
 	 * Get all connections.
