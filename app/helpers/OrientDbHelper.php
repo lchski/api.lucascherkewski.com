@@ -15,6 +15,13 @@ class OrientDbHelper implements DbHelper
 	 */
 	protected $phporient;
 
+    /**
+     * Our OrientDB SQL helper.
+     *
+     * @var OrientSqlHelper
+     */
+    protected $sqlhelper;
+
 	/**
 	 * Catch our DI Container from Slim.
 	 *
@@ -29,6 +36,13 @@ class OrientDbHelper implements DbHelper
 		}
 
 		$this->phporient = $container->get('phporient');
+
+        // Check if our SQL helper instance has been properly configured.
+        if (!$container->has('orientsql_helper')) {
+            throw new \RuntimeException("DI container does not provide `orientsql_helper`");
+        }
+
+        $this->sqlhelper = $container->get('orientsql_helper');
 
 		if ( $this->phporient->dbExists(env('DB_NAME', 'lucascherkewskicom')) )
 			$this->phporient->dbOpen(env('DB_NAME', 'lucascherkewskicom'));
@@ -80,7 +94,7 @@ class OrientDbHelper implements DbHelper
 	 */
 	public function getNodes(array $nodeProperties)
 	{
-		return $this->phporient->query('SELECT * from VERTEX WHERE ' . SqlHelper::arrayToSql($nodeProperties));
+		return $this->phporient->query('SELECT * from VERTEX WHERE ' . $this->sqlhelper->arrayToSql($nodeProperties));
 	}
 
 	/**
@@ -121,7 +135,7 @@ class OrientDbHelper implements DbHelper
 	 */
 	public function deleteNodes(array $nodeProperties)
 	{
-		return $this->phporient->command('DELETE VERTEX WHERE ' . SqlHelper::arrayToSql($nodeProperties));
+		return $this->phporient->command('DELETE VERTEX WHERE ' . $this->sqlhelper->arrayToSql($nodeProperties));
 	}
 
 	/**

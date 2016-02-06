@@ -3,7 +3,7 @@
 namespace Lchski\Helpers;
 
 
-class SqlHelper
+class OrientSqlHelper
 {
 
 	/**

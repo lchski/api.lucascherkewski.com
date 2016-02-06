@@ -24,6 +24,9 @@ $configuration = [
 	'orientdb_helper' => function( $c ) {
 		return new \Lchski\Helpers\OrientDbHelper($c);
 	},
+    'orientsql_helper' => function( $c ) {
+        return new \Lchski\Helpers\OrientSqlHelper($c);
+    }
 ];
 
 // Create our custom Slim container.
