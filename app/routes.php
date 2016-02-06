@@ -42,8 +42,6 @@ $app->group('/api', function() {
                 );
         });
 
-        $this->any('/things/{id}', '\\Lchski\\ThingController');
-
     });
 
 });
