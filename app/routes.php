@@ -9,35 +9,41 @@ $app->group('/migrations', function() {
 
 // All our API routes, in one place.
 $app->group('/api', function() {
-	$this->get('/things', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args ) {
-		$dbHelper = $this->get('orientdb_helper');
 
-		return $response
-			->withHeader('Content-type', 'application/json')
-			->write(
-				json_encode( $dbHelper->getAllNodes() )
-			);
-	});
+    $this->group('/v1', function() {
 
-	$this->post('/things', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args ) {
-		$dbHelper = $this->get('orientdb_helper');
+        $this->get('/things', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args ) {
+            $dbHelper = $this->get('orientdb_helper');
 
-		return $this->response
-			->withHeader('Content-type', 'application/json')
-			->write(
-				json_encode( $dbHelper->createNode($request->getParsedBody()) )
-			);
-	});
+            return $response
+                ->withHeader('Content-type', 'application/json')
+                ->write(
+                    json_encode( $dbHelper->getAllNodes() )
+                );
+        });
 
-	$this->delete('/things', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args ) {
-		$dbHelper = $this->get('orientdb_helper');
+        $this->post('/things', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args ) {
+            $dbHelper = $this->get('orientdb_helper');
 
-		return $this->response
-			->withHeader('Content-type', 'application/json')
-			->write(
-				json_encode( $dbHelper->deleteNodes($request->getParsedBody()) )
-			);
-	});
+            return $this->response
+                ->withHeader('Content-type', 'application/json')
+                ->write(
+                    json_encode( $dbHelper->createNode($request->getParsedBody()) )
+                );
+        });
 
-	$this->any('/things/{id}', '\\Lchski\\ThingController');
+        $this->delete('/things', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args ) {
+            $dbHelper = $this->get('orientdb_helper');
+
+            return $this->response
+                ->withHeader('Content-type', 'application/json')
+                ->write(
+                    json_encode( $dbHelper->deleteNodes($request->getParsedBody()) )
+                );
+        });
+
+        $this->any('/things/{id}', '\\Lchski\\ThingController');
+
+    });
+
 });
