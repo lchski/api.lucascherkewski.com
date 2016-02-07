@@ -42,6 +42,15 @@ $app->group('/api', function() {
                 );
         });
 
+        $this->get('/things/connection/{name}', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args ) {
+            $dbHelper = $this->get('orientdb_helper');
+
+            return $response
+                ->withHeader('Content-type', 'application/json')
+                ->write(
+                    json_encode( $dbHelper->getConnections( ['to' => ['name' => $args['name']]]) )
+                );
+        });
     });
 
 });
