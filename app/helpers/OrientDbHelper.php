@@ -141,7 +141,7 @@ class OrientDbHelper implements DbHelper
     {
         // Verify we're good for it, then assemble our command
         if (isset($connectionNode) && ! empty($connectionNode))
-            $command = 'SELECT expand( both() ) FROM V WHERE ' . $this->sqlhelper->arrayToSql($connectionNode);
+            $command = 'SELECT expand( bothE() ) FROM V WHERE ' . $this->sqlhelper->arrayToSql($connectionNode);
 
         return $this->phporient->command($command);
     }
