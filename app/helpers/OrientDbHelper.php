@@ -97,25 +97,15 @@ class OrientDbHelper implements DbHelper
 		return $this->phporient->query('SELECT * from VERTEX WHERE ' . $this->sqlhelper->arrayToSql($nodeProperties));
 	}
 
-	/**
-	 * Get all nodes.
-	 *
-	 * @return mixed
-	 */
-	public function getAllNodes($limit = 20)
-	{
-		return $this->phporient->query('SELECT * FROM V LIMIT ' . $limit);
-	}
-
-	/**
-	 * Get one or more connections based on properties.
-	 *
-	 * @param array $connectionParameters
-	 * @param array $connectionProperties
-	 * @return mixed
-	 */
-	public function getConnections(array $connectionParameters = array('from' => array(), 'to' => array()), array $connectionProperties = array())
-	{
+    /**
+     * Get one or more connections based on properties.
+     *
+     * @param array $connectionParameters
+     * @param array $connectionProperties
+     * @return mixed
+     */
+    public function getNodesViaConnection(array $connectionParameters = array('from' => array(), 'to' => array()), array $connectionProperties = array())
+    {
         // Our base command
         $command = 'SELECT expand( ';
 
@@ -126,6 +116,32 @@ class OrientDbHelper implements DbHelper
         // Check if we're going in
         if (isset($connectionParameters['to']) && ! empty($connectionParameters['to']))
             $command .= ' in() ) FROM V WHERE ' . $this->sqlhelper->arrayToSql($connectionParameters['to']);
+
+        return $this->phporient->command($command);
+    }
+
+	/**
+	 * Get all nodes.
+	 *
+	 * @return mixed
+	 */
+	public function getAllNodes($limit = 20)
+	{
+		return $this->phporient->query('SELECT * FROM V LIMIT ' . $limit);
+	}
+
+    /**
+     * Get one or more nodes via the connections between them.
+     *
+     * @param  array  $connectionNode
+     * @param  array  $connectionProperties
+     * @return mixed
+     */
+    function getConnections(array $connectionNode = array(), array $connectionProperties = array())
+    {
+        // Verify we're good for it, then assemble our command
+        if (isset($connectionNode) && ! empty($connectionNode))
+            $command = 'SELECT expand( both() ) FROM V WHERE ' . $this->sqlhelper->arrayToSql($connectionNode);
 
         return $this->phporient->command($command);
     }

@@ -40,6 +40,15 @@ interface DbHelper
 	 */
 	function getNodes(array $nodeProperties);
 
+    /**
+     * Get one or more nodes via the connections between them.
+     *
+     * @param  array  $connectionParameters
+     * @param  array  $connectionProperties
+     * @return mixed
+     */
+    function getNodesViaConnection(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = array());
+
 	/**
 	 * Get all nodes.
 	 *
@@ -48,13 +57,13 @@ interface DbHelper
 	function getAllNodes();
 
 	/**
-	 * Get one or more connections based on properties.
+	 * Get one or more connections through a node.
 	 *
-	 * @param array $connectionParameters
+	 * @param array $connectionNode
 	 * @param array $connectionProperties
 	 * @return mixed
 	 */
-	function getConnections(array $connectionParameters = array('from' => '', 'to' => ''), array $connectionProperties = array());
+	function getConnections(array $connectionNode = array(), array $connectionProperties = array());
 
 	/**
 	 * Get all connections.
