@@ -48,7 +48,7 @@ $app->group('/api', function() {
             return $response
                 ->withHeader('Content-type', 'application/json')
                 ->write(
-                    json_encode( $dbHelper->getConnections( ['to' => ['name' => $args['name']]]) )
+                    json_encode( $dbHelper->getConnections( ['name' => $args['name']] ) )
                 );
         });
     });
