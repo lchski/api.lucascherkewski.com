@@ -18,7 +18,7 @@ $app->group('/api', function() {
             return $response
                 ->withHeader('Content-type', 'application/json')
                 ->write(
-                    json_encode( $dbHelper->getAllNodes() )
+                    json_encode( $dbHelper->getAllNodes(), JSON_PRETTY_PRINT )
                 );
         });
 
@@ -28,7 +28,7 @@ $app->group('/api', function() {
             return $this->response
                 ->withHeader('Content-type', 'application/json')
                 ->write(
-                    json_encode( $dbHelper->createNode($request->getParsedBody()) )
+                    json_encode( $dbHelper->createNode($request->getParsedBody()), JSON_PRETTY_PRINT )
                 );
         });
 
@@ -38,7 +38,7 @@ $app->group('/api', function() {
             return $this->response
                 ->withHeader('Content-type', 'application/json')
                 ->write(
-                    json_encode( $dbHelper->deleteNodes($request->getParsedBody()) )
+                    json_encode( $dbHelper->deleteNodes($request->getParsedBody()), JSON_PRETTY_PRINT )
                 );
         });
 
@@ -48,7 +48,7 @@ $app->group('/api', function() {
             return $response
                 ->withHeader('Content-type', 'application/json')
                 ->write(
-                    json_encode( $dbHelper->getConnections( ['name' => $args['name']] ) )
+                    json_encode( $dbHelper->getConnections( ['name' => $args['name']] ), JSON_PRETTY_PRINT )
                 );
         });
     });
