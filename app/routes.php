@@ -34,10 +34,10 @@ $app->group('/api', function() {
         $this->any('/nodes/{node_cluster}/{node_id}', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
             $dbHelper = $this->get('orientdb_helper');
 
+            $rid = '#' . $args['node_cluster'] . ':' . $args['node_id'];
+
             switch( $request->getMethod() ) {
                 case 'GET':
-                    $rid = '#' . $args['node_cluster'] . ':' . $args['node_id'];
-
                     $responseContent = $dbHelper->getNodes(array("@rid" => $rid));
                     break;
             }
