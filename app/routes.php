@@ -12,13 +12,22 @@ $app->group('/api', function() {
 
     $this->group('/v1', function() {
 
-        $this->get('/things', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args ) {
+        $this->any('/nodes', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
             $dbHelper = $this->get('orientdb_helper');
 
+            switch( $request->getMethod() ) {
+                case 'GET':
+                    $responseContent = $dbHelper->getAllNodes();
+                    break;
+                case 'POST':
+                    $responseContent = $dbHelper->createNode($request->getParsedBody());
+                    break;
+            }
+
             return $response
-                ->withHeader('Content-type', 'application/json')
+                ->withHeader('Content-Type', 'application/json')
                 ->write(
-                    json_encode( $dbHelper->getAllNodes(), JSON_PRETTY_PRINT )
+                    json_encode( $responseContent, JSON_PRETTY_PRINT )
                 );
         });
 
