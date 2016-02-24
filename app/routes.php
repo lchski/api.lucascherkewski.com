@@ -22,6 +22,9 @@ $app->group('/api', function() {
                 case 'POST':
                     $responseContent = $dbHelper->createNode($request->getParsedBody());
                     break;
+                default:
+                    $responseContent = 'No response defined for that API method.';
+                    break;
             }
 
             return $response
@@ -42,6 +45,9 @@ $app->group('/api', function() {
                     break;
                 case 'DELETE':
                     $responseContent = $dbHelper->deleteNodes(array("@rid" => $rid));
+                    break;
+                default:
+                    $responseContent = 'No response defined for that API method.';
                     break;
             }
 
