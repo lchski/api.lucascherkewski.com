@@ -58,13 +58,25 @@ $app->group('/api', function() {
                 );
         });
 
-        $this->get('/things/connection/{name}', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args ) {
+        $this->any('/connections', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
             $dbHelper = $this->get('orientdb_helper');
 
+            switch( $request->getMethod() ) {
+                case 'GET':
+                    $responseContent = $dbHelper->getAllConnections();
+                    break;
+                case 'POST':
+                    $responseContent = $dbHelper->createConnection($request->getParsedBody());
+                    break;
+                default:
+                    $responseContent = 'No response defined for that API method.';
+                    break;
+            }
+
             return $response
-                ->withHeader('Content-type', 'application/json')
+                ->withHeader('Content-Type', 'application/json')
                 ->write(
-                    json_encode( $dbHelper->getConnections( ['name' => $args['name']] ), JSON_PRETTY_PRINT )
+                    json_encode( $responseContent, JSON_PRETTY_PRINT )
                 );
         });
     });
