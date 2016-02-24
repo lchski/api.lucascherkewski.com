@@ -36,9 +36,9 @@ $app->group('/api', function() {
 
             switch( $request->getMethod() ) {
                 case 'GET':
-                    $nodeId = '#' . $args['node_cluster'] . ':' . $args['node_id'];
+                    $rid = '#' . $args['node_cluster'] . ':' . $args['node_id'];
 
-                    $responseContent = $dbHelper->getNodes(array("@rid" => $nodeId));
+                    $responseContent = $dbHelper->getNodes(array("@rid" => $rid));
                     break;
             }
 
