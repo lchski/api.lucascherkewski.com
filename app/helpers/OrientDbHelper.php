@@ -94,7 +94,7 @@ class OrientDbHelper implements DbHelper
 	 */
 	public function getNodes(array $nodeProperties)
 	{
-		return $this->phporient->query('SELECT * from VERTEX WHERE ' . $this->sqlhelper->arrayToSql($nodeProperties));
+		return $this->phporient->query('SELECT * FROM V WHERE ' . $this->sqlhelper->arrayToSql($nodeProperties));
 	}
 
     /**
