@@ -40,6 +40,9 @@ $app->group('/api', function() {
                 case 'GET':
                     $responseContent = $dbHelper->getNodes(array("@rid" => $rid));
                     break;
+                case 'DELETE':
+                    $responseContent = $dbHelper->deleteNodes(array("@rid" => $rid));
+                    break;
             }
 
             return $response
