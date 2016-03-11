@@ -3,11 +3,24 @@
 namespace Lchski\Migrations;
 
 use Lchski\Contracts\Migration;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 abstract class BaseMigration implements Migration
 {
-    public function __construct()
-    {
-
+    /**
+     * The name of our table.
+     *
+     * @var string
+     */
+    protected $table;
+g
+    /**
+     * Drop the table managed by the migration.
+     *
+     * @return void
+     */
+    public function down() {
+        Capsule::schema()
+            ->dropIfExists($this->table);
     }
 }

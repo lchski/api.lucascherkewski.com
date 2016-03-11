@@ -5,5 +5,9 @@ namespace Lchski\Contracts;
 
 interface Migration
 {
-    public function __construct();
+    protected $table;
+
+    public function up();
+
+    public function down();
 }
