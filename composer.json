@@ -14,8 +14,7 @@
         "illuminate/database": "^5.2",
         "vlucas/phpdotenv": "^2.1",
         "illuminate/support": "^5.2",
-        "nategood/commando": "^0.2.7",
-        "ostico/phporient": "dev-master"
+        "nategood/commando": "^0.2.7"
     },
     "autoload": {
         "psr-4": {
