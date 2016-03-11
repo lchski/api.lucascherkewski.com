@@ -13,7 +13,7 @@ abstract class BaseMigration implements Migration
      * @var string
      */
     protected $table;
-g
+
     /**
      * Drop the table managed by the migration.
      *
