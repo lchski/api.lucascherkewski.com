@@ -1,7 +1,5 @@
 <?php
 
-use PhpOrient\PhpOrient;
-
 // Configure our Slim instance.
 $configuration = [
 	'settings' => [

@@ -20,7 +20,7 @@ class MigrationController extends BaseController implements Controller
     public function get()
     {
         /**
-         * Extract Migration class name and create a new instance of it, passing in our OrientDB client.
+         * Extract Migration class name and create a new instance of it.
          */
         $migration_class_name = '\\Lchski\\Migrations\\' . $this->args['migrationName'] . 'Migration';
         $migration_class = new $migration_class_name();
