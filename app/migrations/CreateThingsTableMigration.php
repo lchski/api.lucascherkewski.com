@@ -3,7 +3,7 @@
 namespace Lchski\Migrations;
 
 use Lchski\Contracts\Migration;
-use Illuminate\Support\Manager as Capsule;
+use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Schema\Blueprint;
 
 
