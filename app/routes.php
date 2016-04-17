@@ -7,11 +7,7 @@ $app->group('/migrations', function() {
 	$this->get('/{migrationName}/{migrationDirection}', 'migration_controller');
 });
 
-// All our API routes, in one place.
-$app->group('/api', function() {
-
-    $this->group('/v1', function() {
-
-    });
+// Version our routes.
+$this->group('/v1', function() {
 
 });
