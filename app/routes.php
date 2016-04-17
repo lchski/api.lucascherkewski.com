@@ -8,6 +8,24 @@ $app->group('/migrations', function() {
 });
 
 // Version our routes.
-$this->group('/v1', function() {
+$app->group('/v1', function() {
+    $this->get('/items', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $responseContent = \Lchski\Item::all();
 
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $responseContent, JSON_PRETTY_PRINT )
+            );
+    });
+
+    $this->get('/links', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $responseContent = \Lchski\Link::all();
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $responseContent, JSON_PRETTY_PRINT )
+            );
+    });
 });
