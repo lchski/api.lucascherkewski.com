@@ -7,9 +7,9 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Schema\Blueprint;
 
 
-class CreateThingsTableMigration extends BaseMigration implements Migration {
+class CreateItemsTableMigration extends BaseMigration implements Migration {
 
-    protected $table = 'things';
+    protected $table = 'items';
 
     /**
      * Run the migration.
