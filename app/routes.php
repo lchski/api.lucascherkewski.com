@@ -19,6 +19,16 @@ $app->group('/v1', function() {
             );
     });
 
+    $this->post('/items', function(\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $item = \Lchski\Item::create($request->getParsedBody());
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $item, JSON_PRETTY_PRINT )
+            );
+    });
+
     $this->get('/links', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
         $responseContent = \Lchski\Link::all();
 
