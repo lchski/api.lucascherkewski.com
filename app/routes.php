@@ -38,4 +38,14 @@ $app->group('/v1', function() {
                 json_encode( $responseContent, JSON_PRETTY_PRINT )
             );
     });
+
+    $this->post('/links', function(\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $item = \Lchski\Link::create($request->getParsedBody());
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $item, JSON_PRETTY_PRINT )
+            );
+    });
 });
