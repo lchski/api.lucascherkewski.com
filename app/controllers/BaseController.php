@@ -3,8 +3,8 @@
 namespace Lchski;
 
 use Lchski\Contracts\Controller;
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
+use Slim\Http\Request as Request;
+use Slim\Http\Response as Response;
 
 abstract class BaseController implements Controller
 {
