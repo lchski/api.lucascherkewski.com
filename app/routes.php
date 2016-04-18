@@ -19,7 +19,7 @@ $app->group('/v1', function() {
             );
     });
 
-    $this->get('/items/links/{id:[0-9]+}', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+    $this->get('/items/{id:[0-9]+}/links', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
         $responseContent = \Lchski\Item::find(intval($args['id']))->links;
 
         return $response
@@ -28,6 +28,17 @@ $app->group('/v1', function() {
                 json_encode( $responseContent, JSON_PRETTY_PRINT )
             );
     });
+
+    $this->get('/items/{id:[0-9]+}/items', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $responseContent = \Lchski\Item::find(intval($args['id']))->items();
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $responseContent, JSON_PRETTY_PRINT )
+            );
+    });
+
 
     $this->post('/items', function(\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
         $item = \Lchski\Item::create($request->getParsedBody());

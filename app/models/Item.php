@@ -12,4 +12,15 @@ class Item extends Model
     {
         return $this->belongsToMany('\Lchski\Link');
     }
+
+    public function items()
+    {
+        $items = [];
+
+        foreach ($this->links as $link) {
+            $items[] = $link->items()->whereNotIn('items.id', [$this->id])->get();
+        }
+
+        return $items;
+    }
 }
