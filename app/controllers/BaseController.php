@@ -2,20 +2,12 @@
 
 namespace Lchski;
 
-use Interop\Container\ContainerInterface;
 use Lchski\Contracts\Controller;
 use Slim\Http\Request as Request;
 use Slim\Http\Response as Response;
 
 abstract class BaseController implements Controller
 {
-    /**
-     * The Slim Container object.
-     *
-     * @var ContainerInterface
-     */
-    protected $ci;
-
 	/**
 	 * Our Slim Request object.
 	 *
@@ -40,19 +32,22 @@ abstract class BaseController implements Controller
     /**
      * Set our controller instance variables.
      *
-     * @param ContainerInterface $containerInterface
-     * @internal param Request $request
-     * @internal param Response $response
-     * @internal param array $args
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
      */
-    public function __construct( ContainerInterface $containerInterface )
+    public function __invoke( Request $request, Response $response, array $args )
     {
         /**
          * Set our controllers parameters to the route's.
          */
-        $this->ci       = $containerInterface;
-        $this->request  = $containerInterface->get('request');
-        $this->response = $containerInterface->get('response');
-        $this->args     = $this->request->getAttributes();
+        $this->request  = $request;
+        $this->response = $response;
+        $this->args     = $args;
+
+        /**
+         * Call the controller method corresponding to the route name.
+         */
+        call_user_func([$this, $request->getAttribute('route')->getName()]);
     }
 }

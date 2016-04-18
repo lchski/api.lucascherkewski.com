@@ -15,7 +15,6 @@ class ItemController extends BaseController implements Controller
 
     public function getSingle()
     {
-        var_dump($this->request);
         $responseContent = \Lchski\Item::find(intval($this->args['randomThing']));
 
         return $this->buildResponse($responseContent);

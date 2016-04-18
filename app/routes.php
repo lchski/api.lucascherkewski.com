@@ -9,15 +9,15 @@ $app->group('/migrations', function() {
 
 // Version our routes.
 $app->group('/v1', function() {
-    $this->get('/items', '\\Lchski\\ItemController:index');
+    $this->get('/items', '\\Lchski\\ItemController')->setName('index');
 
-    $this->get('/items/{randomThing:[0-9]+}', '\\Lchski\\ItemController:getSingle');
+    $this->get('/items/{randomThing:[0-9]+}', '\\Lchski\\ItemController')->setName('getSingle');
 
-    $this->get('/items/{id:[0-9]+}/links', '\\Lchski\\ItemController:getSingleLinks');
+    $this->get('/items/{id:[0-9]+}/links', '\\Lchski\\ItemController')->setName('getSingleLinks');
 
-    $this->get('/items/{id:[0-9]+}/items', '\\Lchski\\ItemController:getSingleItems');
+    $this->get('/items/{id:[0-9]+}/items', '\\Lchski\\ItemController')->setName('getSingleItems');
 
-    $this->post('/items', '\\Lchski\\ItemController:createSingle');
+    $this->post('/items', '\\Lchski\\ItemController')->setName('createSingle');
 
     $this->get('/links', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
         $responseContent = \Lchski\Link::all();
