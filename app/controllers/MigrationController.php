@@ -7,14 +7,6 @@ use Lchski\Contracts\Controller;
 class MigrationController extends BaseController implements Controller
 {
     /**
-     * MigrationController constructor.
-     */
-    public function __construct()
-    {
-
-    }
-
-    /**
      * Route all our migration requests to the appropriate Migration.
      */
     public function get()
