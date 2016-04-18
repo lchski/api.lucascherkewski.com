@@ -15,7 +15,7 @@ class ItemController extends BaseController implements Controller
 
     public function getSingle()
     {
-        $responseContent = \Lchski\Item::find(intval($this->args['randomThing']));
+        $responseContent = \Lchski\Item::find(intval($this->args['id']));
 
         return $this->buildResponse($responseContent);
     }

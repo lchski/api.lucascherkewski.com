@@ -11,7 +11,7 @@ $app->group('/migrations', function() {
 $app->group('/v1', function() {
     $this->get('/items', '\\Lchski\\ItemController')->setName('index');
 
-    $this->get('/items/{randomThing:[0-9]+}', '\\Lchski\\ItemController')->setName('getSingle');
+    $this->get('/items/{id:[0-9]+}', '\\Lchski\\ItemController')->setName('getSingle');
 
     $this->get('/items/{id:[0-9]+}/links', '\\Lchski\\ItemController')->setName('getSingleLinks');
 
