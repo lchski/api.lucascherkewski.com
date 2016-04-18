@@ -8,35 +8,35 @@ class ItemController extends BaseController implements Controller
 {
     public function index()
     {
-        $responseContent = \Lchski\Item::all();
+        $responseContent = Item::all();
 
         return $this->buildResponse($responseContent);
     }
 
     public function getSingle()
     {
-        $responseContent = \Lchski\Item::find(intval($this->args['id']));
+        $responseContent = Item::find(intval($this->args['id']));
 
         return $this->buildResponse($responseContent);
     }
 
     public function getSingleLinks()
     {
-        $responseContent = \Lchski\Item::find(intval($this->args['id']))->links;
+        $responseContent = Item::find(intval($this->args['id']))->links;
 
         return $this->buildResponse($responseContent);
     }
 
     public function getSingleItems()
     {
-        $responseContent = \Lchski\Item::find(intval($this->args['id']))->items();
+        $responseContent = Item::find(intval($this->args['id']))->items();
 
         return $this->buildResponse($responseContent);
     }
 
     public function createSingle()
     {
-        $item = \Lchski\Item::create($this->request->getParsedBody());
+        $item = Item::create($this->request->getParsedBody());
 
         return $this->buildResponse($item);
     }
