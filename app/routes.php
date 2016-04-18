@@ -61,7 +61,11 @@ $app->group('/v1', function() {
     });
 
     $this->post('/links', function(\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
-        $item = \Lchski\Link::create($request->getParsedBody());
+        $requestBody = $request->getParsedBody();
+
+        $item = \Lchski\Link::create($requestBody);
+
+        $item->items()->attach($requestBody['items']);
 
         return $response
             ->withHeader('Content-Type', 'application/json')
