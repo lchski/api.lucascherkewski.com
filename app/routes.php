@@ -19,6 +19,16 @@ $app->group('/v1', function() {
             );
     });
 
+    $this->get('/items/{id:[0-9]+}', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $responseContent = \Lchski\Item::find(intval($args['id']));
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $responseContent, JSON_PRETTY_PRINT )
+            );
+    });
+
     $this->get('/items/{id:[0-9]+}/links', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
         $responseContent = \Lchski\Item::find(intval($args['id']))->links;
 
@@ -71,6 +81,26 @@ $app->group('/v1', function() {
             ->withHeader('Content-Type', 'application/json')
             ->write(
                 json_encode( $item, JSON_PRETTY_PRINT )
+            );
+    });
+
+    $this->get('/links/{id:[0-9]+}', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $responseContent = \Lchski\Link::find(intval($args['id']));
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $responseContent, JSON_PRETTY_PRINT )
+            );
+    });
+
+    $this->get('/links/{id:[0-9]+}/items', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $responseContent = \Lchski\Link::find(intval($args['id']))->items;
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $responseContent, JSON_PRETTY_PRINT )
             );
     });
 });
