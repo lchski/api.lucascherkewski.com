@@ -48,6 +48,6 @@ abstract class BaseController implements Controller
         /**
          * Call the controller method corresponding to the route name.
          */
-        call_user_func([$this, $request->getAttribute('route')->getName()]);
+        return call_user_func([$this, $request->getAttribute('route')->getName()]);
     }
 }
