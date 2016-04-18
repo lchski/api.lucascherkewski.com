@@ -17,3 +17,5 @@ require __DIR__ . '/bootstrap/database.php';
 require __DIR__ . '/routes.php';
 
 $app->run();
+
+error_log(print_r(Illuminate\Database\Capsule\Manager::connection()->getQueryLog(), 1));

@@ -19,5 +19,7 @@ $capsule->addConnection([
 // Allow our Capsule instance to be accessed via static methods.
 $capsule->setAsGlobal();
 
+$capsule::connection()->enableQueryLog();
+
 // Set up the Eloquent ORM.
 $capsule->bootEloquent();
