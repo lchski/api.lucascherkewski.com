@@ -9,7 +9,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateJointTableMigration extends BaseMigration implements Migration {
 
-    protected $table = 'item_links';
+    protected $table = 'item_link';
 
     /**
      * Run the migration.
