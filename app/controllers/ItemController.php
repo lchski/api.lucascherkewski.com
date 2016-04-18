@@ -8,45 +8,35 @@ class ItemController extends BaseController implements Controller
 {
     public function index()
     {
-        $responseContent = Item::all();
-
-        return $this->buildResponse($responseContent);
+        return $this->buildResponse(Item::all());
     }
 
     public function getSingle()
     {
-        $responseContent = Item::find(intval($this->args['id']));
-
-        return $this->buildResponse($responseContent);
+        return $this->buildResponse(Item::find((int)$this->args['id']));
     }
 
     public function getSingleLinks()
     {
-        $responseContent = Item::find(intval($this->args['id']))->links;
-
-        return $this->buildResponse($responseContent);
+        return $this->buildResponse(Item::find((int)$this->args['id'])->links);
     }
 
     public function getSingleItems()
     {
-        $responseContent = Item::find(intval($this->args['id']))->items();
-
-        return $this->buildResponse($responseContent);
+        return $this->buildResponse(Item::find((int)$this->args['id'])->items());
     }
 
     public function createSingle()
     {
-        $item = Item::create($this->request->getParsedBody());
-
-        return $this->buildResponse($item);
+        return $this->buildResponse(Item::create($this->request->getParsedBody()));
     }
 
     public function buildResponse($data)
     {
         return $this->response
-                    ->withHeader('Content-Type', 'application/json')
-                    ->write(
-                        json_encode( $data, JSON_PRETTY_PRINT )
-                    );
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode($data, JSON_PRETTY_PRINT)
+            );
     }
 }
