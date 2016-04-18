@@ -11,46 +11,13 @@ $app->group('/migrations', function() {
 $app->group('/v1', function() {
     $this->get('/items', '\\Lchski\\ItemController:index');
 
-    $this->get('/items/{id:[0-9]+}', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
-        $responseContent = \Lchski\Item::find(intval($args['id']));
+    $this->get('/items/{randomThing:[0-9]+}', '\\Lchski\\ItemController:getSingle');
 
-        return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->write(
-                json_encode( $responseContent, JSON_PRETTY_PRINT )
-            );
-    });
+    $this->get('/items/{id:[0-9]+}/links', '\\Lchski\\ItemController:getSingleLinks');
 
-    $this->get('/items/{id:[0-9]+}/links', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
-        $responseContent = \Lchski\Item::find(intval($args['id']))->links;
+    $this->get('/items/{id:[0-9]+}/items', '\\Lchski\\ItemController:getSingleItems');
 
-        return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->write(
-                json_encode( $responseContent, JSON_PRETTY_PRINT )
-            );
-    });
-
-    $this->get('/items/{id:[0-9]+}/items', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
-        $responseContent = \Lchski\Item::find(intval($args['id']))->items();
-
-        return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->write(
-                json_encode( $responseContent, JSON_PRETTY_PRINT )
-            );
-    });
-
-
-    $this->post('/items', function(\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
-        $item = \Lchski\Item::create($request->getParsedBody());
-
-        return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->write(
-                json_encode( $item, JSON_PRETTY_PRINT )
-            );
-    });
+    $this->post('/items', '\\Lchski\\ItemController:createSingle');
 
     $this->get('/links', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
         $responseContent = \Lchski\Link::all();
