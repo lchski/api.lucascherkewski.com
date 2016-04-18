@@ -7,78 +7,70 @@ $app->group('/migrations', function() {
 	$this->get('/{migrationName}/{migrationDirection}', 'migration_controller');
 });
 
-// All our API routes, in one place.
-$app->group('/api', function() {
+// Version our routes.
+$app->group('/v1', function() {
+    $this->get('/items', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $responseContent = \Lchski\Item::all();
 
-    $this->group('/v1', function() {
-
-        $this->any('/nodes', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
-            $dbHelper = $this->get('orientdb_helper');
-
-            switch( $request->getMethod() ) {
-                case 'GET':
-                    $responseContent = $dbHelper->getAllNodes();
-                    break;
-                case 'POST':
-                    $responseContent = $dbHelper->createNode($request->getParsedBody());
-                    break;
-                default:
-                    $responseContent = 'No response defined for that API method.';
-                    break;
-            }
-
-            return $response
-                ->withHeader('Content-Type', 'application/json')
-                ->write(
-                    json_encode( $responseContent, JSON_PRETTY_PRINT )
-                );
-        });
-
-        $this->any('/nodes/{node_cluster}/{node_id}', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
-            $dbHelper = $this->get('orientdb_helper');
-
-            $rid = '#' . $args['node_cluster'] . ':' . $args['node_id'];
-
-            switch( $request->getMethod() ) {
-                case 'GET':
-                    $responseContent = $dbHelper->getNodes(array("@rid" => $rid));
-                    break;
-                case 'DELETE':
-                    $responseContent = $dbHelper->deleteNodes(array("@rid" => $rid));
-                    break;
-                default:
-                    $responseContent = 'No response defined for that API method.';
-                    break;
-            }
-
-            return $response
-                ->withHeader('Content-Type', 'application/json')
-                ->write(
-                    json_encode( $responseContent, JSON_PRETTY_PRINT )
-                );
-        });
-
-        $this->any('/connections', function( \Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
-            $dbHelper = $this->get('orientdb_helper');
-
-            switch( $request->getMethod() ) {
-                case 'GET':
-                    $responseContent = $dbHelper->getAllConnections();
-                    break;
-                case 'POST':
-                    $responseContent = $dbHelper->createConnection($request->getParsedBody());
-                    break;
-                default:
-                    $responseContent = 'No response defined for that API method.';
-                    break;
-            }
-
-            return $response
-                ->withHeader('Content-Type', 'application/json')
-                ->write(
-                    json_encode( $responseContent, JSON_PRETTY_PRINT )
-                );
-        });
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $responseContent, JSON_PRETTY_PRINT )
+            );
     });
 
+    $this->get('/items/{id:[0-9]+}/links', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $responseContent = \Lchski\Item::find(intval($args['id']))->links;
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $responseContent, JSON_PRETTY_PRINT )
+            );
+    });
+
+    $this->get('/items/{id:[0-9]+}/items', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $responseContent = \Lchski\Item::find(intval($args['id']))->items();
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $responseContent, JSON_PRETTY_PRINT )
+            );
+    });
+
+
+    $this->post('/items', function(\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $item = \Lchski\Item::create($request->getParsedBody());
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $item, JSON_PRETTY_PRINT )
+            );
+    });
+
+    $this->get('/links', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $responseContent = \Lchski\Link::all();
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $responseContent, JSON_PRETTY_PRINT )
+            );
+    });
+
+    $this->post('/links', function(\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
+        $requestBody = $request->getParsedBody();
+
+        $item = \Lchski\Link::create($requestBody);
+
+        $item->items()->attach($requestBody['items']);
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode( $item, JSON_PRETTY_PRINT )
+            );
+    });
 });

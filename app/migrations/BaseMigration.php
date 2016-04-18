@@ -2,29 +2,25 @@
 
 namespace Lchski\Migrations;
 
-use Lchski\Contracts\DbHelper;
 use Lchski\Contracts\Migration;
-use PhpOrient\PhpOrient;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 abstract class BaseMigration implements Migration
 {
-	/**
-	 * @var PhpOrient
-	 */
-	protected $phporient;
+    /**
+     * The name of our table.
+     *
+     * @var string
+     */
+    protected $table;
 
-	/**
-	 * @var DbHelper
-	 */
-	protected $dbHelper;
-
-	/**
-	 * Grab the OrientDB client and set it as a property, accessible by any Migration.
-	 * @param PhpOrient $phporient
-	 */
-	public function __construct( PhpOrient $phporient, DbHelper $dbHelper )
-	{
-		$this->phporient = $phporient;
-		$this->dbHelper  = $dbHelper;
-	}
+    /**
+     * Drop the table managed by the migration.
+     *
+     * @return void
+     */
+    public function down() {
+        Capsule::schema()
+            ->dropIfExists($this->table);
+    }
 }
