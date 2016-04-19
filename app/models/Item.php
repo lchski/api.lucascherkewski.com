@@ -15,11 +15,7 @@ class Item extends Model
 
     public function items()
     {
-        $items = [];
-
-        foreach ($this->links as $link) {
-            $items[] = $link->items()->whereNotIn('items.id', [$this->id])->get();
-        }
+        $items = $this->with('links.items')->where('items.id', [$this->id])->get();
 
         return $items;
     }
