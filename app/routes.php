@@ -11,55 +11,19 @@ $app->group('/migrations', function() {
 $app->group('/v1', function() {
     $this->get('/items', '\\Lchski\\ItemController')->setName('index');
 
+    $this->post('/items', '\\Lchski\\ItemController')->setName('createSingle');
+
     $this->get('/items/{id:[0-9]+}', '\\Lchski\\ItemController')->setName('getSingle');
 
     $this->get('/items/{id:[0-9]+}/links', '\\Lchski\\ItemController')->setName('getSingleLinks');
 
     $this->get('/items/{id:[0-9]+}/items', '\\Lchski\\ItemController')->setName('getSingleItems');
 
-    $this->post('/items', '\\Lchski\\ItemController')->setName('createSingle');
+    $this->get('/links', '\\Lchski\\LinkController')->setName('index');
 
-    $this->get('/links', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
-        $responseContent = \Lchski\Link::all();
+    $this->post('/links', '\\Lchski\\LinkController')->setName('createSingle');
 
-        return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->write(
-                json_encode( $responseContent, JSON_PRETTY_PRINT )
-            );
-    });
+    $this->get('/links/{id:[0-9]+}', '\\Lchski\\LinkController')->setName('getSingle');
 
-    $this->post('/links', function(\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
-        $requestBody = $request->getParsedBody();
-
-        $item = \Lchski\Link::create($requestBody);
-
-        $item->items()->attach($requestBody['items']);
-
-        return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->write(
-                json_encode( $item, JSON_PRETTY_PRINT )
-            );
-    });
-
-    $this->get('/links/{id:[0-9]+}', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
-        $responseContent = \Lchski\Link::find(intval($args['id']));
-
-        return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->write(
-                json_encode( $responseContent, JSON_PRETTY_PRINT )
-            );
-    });
-
-    $this->get('/links/{id:[0-9]+}/items', function (\Slim\Http\Request $request, \Slim\Http\Response $response, array $args) {
-        $responseContent = \Lchski\Link::find(intval($args['id']))->items;
-
-        return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->write(
-                json_encode( $responseContent, JSON_PRETTY_PRINT )
-            );
-    });
+    $this->get('/links/{id:[0-9]+}/items', '\\Lchski\\LinkController')->setName('getSingleItems');
 });
