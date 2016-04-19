@@ -15,7 +15,17 @@ class Item extends Model
 
     public function items()
     {
-        $items = $this->with('links.items')->where('items.id', [$this->id])->get();
+        $items = [];
+
+        $linksWithItems = $this->with('links.items')->where('items.id', [$this->id])->get()[0]['links'];
+
+        foreach ($linksWithItems as $linkWithItems) {
+            foreach ($linkWithItems['items'] as $item) {
+                if ($item->id != $this->id) {
+                    $items[] = $item;
+                }
+            }
+        }
 
         return $items;
     }
