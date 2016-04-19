@@ -7,12 +7,13 @@ use \Illuminate\Support\Str;
  * Source: https://github.com/laravel/framework/blob/5.2/src/Illuminate/Foundation/helpers.php
  */
 
-if (! function_exists('env')) {
+if (!function_exists('env')) {
     /**
      * Gets the value of an environment variable. Supports boolean, empty and null.
      *
-     * @param  string  $key
-     * @param  mixed   $default
+     * @param  string $key
+     * @param  mixed  $default
+     *
      * @return mixed
      */
     function env($key, $default = null)
@@ -38,6 +39,7 @@ if (! function_exists('env')) {
         if (strlen($value) > 1 && Str::startsWith($value, '"') && Str::endsWith($value, '"')) {
             return substr($value, 1, -1);
         }
+
         return $value;
     }
 }

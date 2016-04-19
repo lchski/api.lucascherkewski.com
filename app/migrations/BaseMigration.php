@@ -19,7 +19,8 @@ abstract class BaseMigration implements Migration
      *
      * @return void
      */
-    public function down() {
+    public function down()
+    {
         Capsule::schema()
             ->dropIfExists($this->table);
     }

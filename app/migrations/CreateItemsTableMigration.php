@@ -7,7 +7,8 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Schema\Blueprint;
 
 
-class CreateItemsTableMigration extends BaseMigration implements Migration {
+class CreateItemsTableMigration extends BaseMigration implements Migration
+{
 
     protected $table = 'items';
 
@@ -16,8 +17,9 @@ class CreateItemsTableMigration extends BaseMigration implements Migration {
      *
      * @return void
      */
-    public function up() {
-        if (! Capsule::schema()->hasTable($this->table)) {
+    public function up()
+    {
+        if (!Capsule::schema()->hasTable($this->table)) {
             Capsule::schema()->create($this->table, function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('title');

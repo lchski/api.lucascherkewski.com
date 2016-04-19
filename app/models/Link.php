@@ -8,7 +8,8 @@ class Link extends Model
 {
     protected $fillable = ['title'];
 
-    public function items() {
+    public function items()
+    {
         return $this->belongsToMany('\Lchski\Item');
     }
 }

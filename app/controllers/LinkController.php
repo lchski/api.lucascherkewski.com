@@ -65,6 +65,7 @@ class LinkController extends BaseController implements Controller
      * Convert data to JSON and set as response.
      *
      * @param $data mixed
+     *
      * @return Response
      */
     public function buildResponse($data)

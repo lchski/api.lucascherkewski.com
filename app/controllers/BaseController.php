@@ -8,44 +8,44 @@ use Slim\Http\Response as Response;
 
 abstract class BaseController implements Controller
 {
-	/**
-	 * Our Slim Request object.
-	 *
-	 * @var Request $request
-	 */
-	protected $request;
+    /**
+     * Our Slim Request object.
+     *
+     * @var Request $request
+     */
+    protected $request;
 
-	/**
-	 * Our Slim Response object.
-	 *
-	 * @var Response $response
-	 */
-	protected $response;
+    /**
+     * Our Slim Response object.
+     *
+     * @var Response $response
+     */
+    protected $response;
 
-	/**
-	 * The arguments to our Slim route.
-	 *
-	 * @var array $args
-	 */
-	protected $args;
+    /**
+     * The arguments to our Slim route.
+     *
+     * @var array $args
+     */
+    protected $args;
 
     /**
      * Set our controller instance variables.
      *
-     * @param Request $request
+     * @param Request  $request
      * @param Response $response
-     * @param array $args
+     * @param array    $args
      *
      * @return Response
      */
-    public function __invoke( Request $request, Response $response, array $args )
+    public function __invoke(Request $request, Response $response, array $args)
     {
         /**
          * Set our controllers parameters to the route's.
          */
-        $this->request  = $request;
+        $this->request = $request;
         $this->response = $response;
-        $this->args     = $args;
+        $this->args = $args;
 
         /**
          * Call the controller method corresponding to the route name.
