@@ -18,6 +18,8 @@ $app->group('/v1', function () {
 
         $this->get('/{id:[0-9]+}', '\\Lchski\\ItemController')->setName('getSingle');
 
+        $this->delete('/{id:[0-9]+}', '\\Lchski\\ItemController')->setName('deleteSingle');
+
         $this->get('/{id:[0-9]+}/links', '\\Lchski\\ItemController')->setName('getSingleLinks');
 
         $this->get('/{id:[0-9]+}/items', '\\Lchski\\ItemController')->setName('getSingleItems');

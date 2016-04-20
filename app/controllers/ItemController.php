@@ -56,6 +56,18 @@ class ItemController extends BaseController implements Controller
     }
 
     /**
+     * Delete an Item.
+     *
+     * Path: /items/{id:[0-9]+} (DELETE)
+     *
+     * @return Response
+     */
+    public function deleteSingle()
+    {
+        return $this->buildResponse(Item::destroy((int)$this->args['id']));
+    }
+
+    /**
      * Create a new Item.
      *
      * Path: /items (POST)
