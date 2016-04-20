@@ -18,11 +18,11 @@ $app->group('/v1', function () {
 
         $this->get('/{id:[0-9]+}', '\\Lchski\\ItemController')->setName('getSingle');
 
-        $this->delete('/{id:[0-9]+}', '\\Lchski\\ItemController')->setName('deleteSingle');
-
         $this->get('/{id:[0-9]+}/links', '\\Lchski\\ItemController')->setName('getSingleLinks');
 
         $this->get('/{id:[0-9]+}/items', '\\Lchski\\ItemController')->setName('getSingleItems');
+
+        $this->delete('/{id:[0-9]+}', '\\Lchski\\ItemController')->setName('deleteSingle');
     });
 
     // Group routes related to Links.
@@ -34,8 +34,8 @@ $app->group('/v1', function () {
 
         $this->get('/{id:[0-9]+}', '\\Lchski\\LinkController')->setName('getSingle');
 
-        $this->delete('/{id:[0-9]+}', '\\Lchski\\LinkController')->setName('deleteSingle');
-
         $this->get('/{id:[0-9]+}/items', '\\Lchski\\LinkController')->setName('getSingleItems');
+
+        $this->delete('/{id:[0-9]+}', '\\Lchski\\LinkController')->setName('deleteSingle');
     });
 });
