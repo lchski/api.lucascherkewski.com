@@ -20,6 +20,18 @@ class ItemController extends BaseController implements Controller
     }
 
     /**
+     * Create a new Item.
+     *
+     * Path: /items (POST)
+     *
+     * @return Response
+     */
+    public function createSingle()
+    {
+        return $this->buildResponse(Item::create($this->request->getParsedBody()));
+    }
+
+    /**
      * Get a specific Item.
      *
      * Path: /items/{id:[0-9]+}
@@ -65,18 +77,6 @@ class ItemController extends BaseController implements Controller
     public function deleteSingle()
     {
         return $this->buildResponse(Item::destroy((int)$this->args['id']));
-    }
-
-    /**
-     * Create a new Item.
-     *
-     * Path: /items (POST)
-     *
-     * @return Response
-     */
-    public function createSingle()
-    {
-        return $this->buildResponse(Item::create($this->request->getParsedBody()));
     }
 
     /**

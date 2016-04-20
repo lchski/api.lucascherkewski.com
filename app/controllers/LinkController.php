@@ -20,6 +20,24 @@ class LinkController extends BaseController implements Controller
     }
 
     /**
+     * Create a new Link.
+     *
+     * Path: /links (POST)
+     *
+     * @return Response
+     */
+    public function createSingle()
+    {
+        $requestBody = $this->request->getParsedBody();
+
+        $item = Link::create($requestBody);
+
+        $item->items()->attach($requestBody['items']);
+
+        return $this->buildResponse($item);
+    }
+
+    /**
      * Get a specific Link.
      *
      * Path: /links/{id:[0-9]+}
@@ -53,24 +71,6 @@ class LinkController extends BaseController implements Controller
     public function deleteSingle()
     {
         return $this->buildResponse(Link::destroy((int)$this->args['id']));
-    }
-
-    /**
-     * Create a new Link.
-     *
-     * Path: /links (POST)
-     *
-     * @return Response
-     */
-    public function createSingle()
-    {
-        $requestBody = $this->request->getParsedBody();
-
-        $item = Link::create($requestBody);
-
-        $item->items()->attach($requestBody['items']);
-
-        return $this->buildResponse($item);
     }
 
     /**
