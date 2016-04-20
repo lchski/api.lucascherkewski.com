@@ -44,6 +44,18 @@ class LinkController extends BaseController implements Controller
     }
 
     /**
+     * Delete a Link.
+     *
+     * Path: /links/{id:[0-9]+} (DELETE)
+     *
+     * @return Response
+     */
+    public function deleteSingle()
+    {
+        return $this->buildResponse(Link::destroy((int)$this->args['id']));
+    }
+
+    /**
      * Create a new Link.
      *
      * Path: /links (POST)
