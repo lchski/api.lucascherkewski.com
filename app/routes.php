@@ -1,7 +1,7 @@
 <?php
 
 // Our homepage route.
-$app->any('/', '\\Lchski\\MainController:index');
+$app->any('/', '\\Lchski\\MainController')->setName('index');
 
 $app->group('/migrations', function () {
     $this->get('/{migrationName}/{migrationDirection}', '\\Lchski\\MigrationController')->setName('processMigration');
