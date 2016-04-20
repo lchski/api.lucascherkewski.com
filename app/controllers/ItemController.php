@@ -68,6 +68,18 @@ class ItemController extends BaseController implements Controller
     }
 
     /**
+     * Update a specific Item.
+     *
+     * Path: /items/{id:[0-9]+} (PUT)
+     *
+     * @return Response
+     */
+    public function updateSingle()
+    {
+        return $this->buildResponse(Item::find((int)$this->args['id'])->update($this->request->getParsedBody()));
+    }
+
+    /**
      * Delete an Item.
      *
      * Path: /items/{id:[0-9]+} (DELETE)
