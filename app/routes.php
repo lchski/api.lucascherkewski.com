@@ -38,6 +38,8 @@ $app->group('/v1', function () {
 
         $this->get('/{id:[0-9]+}/items', '\\Lchski\\LinkController')->setName('getSingleItems');
 
+        $this->put('/{id:[0-9]+}', '\\Lchski\\LinkController')->setName('updateSingle');
+
         $this->delete('/{id:[0-9]+}', '\\Lchski\\LinkController')->setName('deleteSingle');
     });
 });

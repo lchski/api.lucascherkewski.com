@@ -62,6 +62,18 @@ class LinkController extends BaseController implements Controller
     }
 
     /**
+     * Update a specific Link.
+     *
+     * Path: /links/{id:[0-9]+} (PUT)
+     *
+     * @return Response
+     */
+    public function updateSingle()
+    {
+        return $this->buildResponse(Link::find((int)$this->args['id'])->update($this->request->getParsedBody()));
+    }
+
+    /**
      * Delete a Link.
      *
      * Path: /links/{id:[0-9]+} (DELETE)
