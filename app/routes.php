@@ -4,7 +4,7 @@
 $app->any('/', '\\Lchski\\MainController:index');
 
 $app->group('/migrations', function () {
-    $this->get('/{migrationName}/{migrationDirection}', 'migration_controller');
+    $this->get('/{migrationName}/{migrationDirection}', '\\Lchski\\MigrationController')->setName('processMigration');
 });
 
 // Version our routes.

@@ -9,7 +9,7 @@ class MigrationController extends BaseController implements Controller
     /**
      * Route all our migration requests to the appropriate Migration.
      */
-    public function get()
+    public function processMigration()
     {
         /**
          * Extract Migration class name and create a new instance of it.
