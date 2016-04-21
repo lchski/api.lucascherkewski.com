@@ -1,6 +1,0 @@
----
-- hosts: all
-  user: vagrant
-  sudo: true
-  roles:
-  - { role: migibert.orientdb }
