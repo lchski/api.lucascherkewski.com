@@ -22,6 +22,8 @@ $app->group('/v1', function () {
 
         $this->get('/{id:[0-9]+}/items', '\\Lchski\\ItemController')->setName('getSingleItems');
 
+        $this->get('/{id:[0-9]+}/linksWithItems', '\\Lchski\\ItemController')->setName('getSingleLinksWithItems');
+
         $this->put('/{id:[0-9]+}', '\\Lchski\\ItemController')->setName('updateSingle');
 
         $this->delete('/{id:[0-9]+}', '\\Lchski\\ItemController')->setName('deleteSingle');

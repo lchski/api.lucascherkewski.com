@@ -67,6 +67,11 @@ class ItemController extends BaseController implements Controller
         return $this->buildResponse(Item::find((int)$this->args['id'])->items());
     }
 
+    public function getSingleLinksWithItems()
+    {
+        return $this->buildResponse(Item::find((int)$this->args['id'])->linksWithItems());
+    }
+
     /**
      * Update a specific Item.
      *

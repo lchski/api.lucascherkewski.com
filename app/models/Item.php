@@ -34,4 +34,19 @@ class Item extends Model
 
         return $items;
     }
+
+    public function linksWithItems()
+    {
+        $linksWithItems = $this->with('links.items')->where('items.id', [$this->id])->get()[0]['links'];
+
+        $cleanedLinksWithItems = $linksWithItems->each(function ($linkWithItems) {
+            $linkWithItems->items = $linkWithItems['items']->reject(function ($item) {
+                return $item->id == $this->id;
+            });
+
+            return $linkWithItems;
+        });
+
+        return $cleanedLinksWithItems;
+    }
 }
