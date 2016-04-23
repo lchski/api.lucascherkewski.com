@@ -22,7 +22,7 @@ $app = new \Slim\App($c);
 // Add our global middleware.
 $app->add(new \Lchski\TrailingSlashMiddleware);
 
-$app->add(new \Slim\HttpCache\Cache('public', 86400));
+$app->add(new \Slim\HttpCache\Cache('private', 300, true));
 
 $app->add(new \Slim\Middleware\HttpBasicAuthentication([
     'users'   => [
