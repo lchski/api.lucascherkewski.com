@@ -67,6 +67,13 @@ class ItemController extends BaseController implements Controller
         return $this->buildResponse(Item::find((int)$this->args['id'])->items());
     }
 
+    /**
+     * Get the Links for a specific Item, with the linked items.
+     *
+     * Path: /items/{id:[0-9]+}/linksWithItems
+     *
+     * @return Response
+     */
     public function getSingleLinksWithItems()
     {
         return $this->buildResponse(Item::find((int)$this->args['id'])->linksWithItems());
