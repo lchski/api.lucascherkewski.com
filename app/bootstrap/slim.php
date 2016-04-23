@@ -19,7 +19,7 @@ $c['cache'] = function () {
 
 // Configure storage provider, Flysystem.
 $c['storage'] = function() {
-    $adapter = new \League\Flysystem\Adapter\Local(__DIR__ . '/../../../storage/');
+    $adapter = new \League\Flysystem\Adapter\Local(__DIR__ . '/../..' . env('STORAGE_ROOT_DIR', '/../storage/'));
 
     return new \League\Flysystem\Filesystem($adapter);
 };
