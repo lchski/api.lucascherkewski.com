@@ -3,6 +3,7 @@
 namespace Lchski;
 
 use Lchski\Contracts\Controller;
+use Slim\Container;
 use Slim\Http\Request as Request;
 use Slim\Http\Response as Response;
 
@@ -30,6 +31,23 @@ abstract class BaseController implements Controller
     protected $args;
 
     /**
+     * Slim Dependency Injection Container.
+     *
+     * @var Container $c
+     */
+    protected $c;
+
+    /**
+     * Set the DI Container.
+     *
+     * @param Container $c
+     */
+    public function __construct(Container $c)
+    {
+        $this->c = $c;
+    }
+
+    /**
      * Set our controller instance variables.
      *
      * @param Request  $request
@@ -51,5 +69,25 @@ abstract class BaseController implements Controller
          * Call the controller method corresponding to the route name.
          */
         return call_user_func([$this, $request->getAttribute('route')->getName()]);
+    }
+
+    /**
+     * Convert data to JSON and set as response, with caching header.
+     *
+     * @param $data mixed
+     *
+     * @return Response
+     */
+    public function buildResponse($data)
+    {
+        // Construct response based on provided data.
+        $builtResponse = $this->response
+            ->withHeader('Content-Type', 'application/json')
+            ->write(
+                json_encode($data, JSON_PRETTY_PRINT)
+            );
+
+        // Return the response with an ETag added, for caching.
+        return $this->c->cache->withEtag($builtResponse, sha1($builtResponse->getBody()));
     }
 }

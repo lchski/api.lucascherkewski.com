@@ -84,20 +84,4 @@ class LinkController extends BaseController implements Controller
     {
         return $this->buildResponse(Link::destroy((int)$this->args['id']));
     }
-
-    /**
-     * Convert data to JSON and set as response.
-     *
-     * @param $data mixed
-     *
-     * @return Response
-     */
-    public function buildResponse($data)
-    {
-        return $this->response
-            ->withHeader('Content-Type', 'application/json')
-            ->write(
-                json_encode($data, JSON_PRETTY_PRINT)
-            );
-    }
 }
