@@ -49,6 +49,14 @@ $app->group('/v1', function () {
         $this->group('/{id:[0-9]+}', function () {
             $this->get('', '\\Lchski\\LinkController')->setName('getSingle');
 
+            $this->group('/content', function() {
+                $this->map(['POST', 'PUT'], '', '\\Lchski\\LinkController')->setName('setSingleContent');
+
+                $this->get('', '\\Lchski\\LinkController')->setName('getSingleContent');
+
+                $this->delete('', '\\Lchski\\LinkController')->setName('deleteSingleContent');
+            });
+
             $this->get('/items', '\\Lchski\\LinkController')->setName('getSingleItems');
 
             $this->put('', '\\Lchski\\LinkController')->setName('updateSingle');
