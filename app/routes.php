@@ -16,17 +16,19 @@ $app->group('/v1', function () {
 
         $this->post('', '\\Lchski\\ItemController')->setName('createSingle');
 
-        $this->get('/{id:[0-9]+}', '\\Lchski\\ItemController')->setName('getSingle');
+        $this->group('/{id:[0-9]+}', function () {
+            $this->get('', '\\Lchski\\ItemController')->setName('getSingle');
 
-        $this->get('/{id:[0-9]+}/links', '\\Lchski\\ItemController')->setName('getSingleLinks');
+            $this->get('/links', '\\Lchski\\ItemController')->setName('getSingleLinks');
 
-        $this->get('/{id:[0-9]+}/items', '\\Lchski\\ItemController')->setName('getSingleItems');
+            $this->get('/items', '\\Lchski\\ItemController')->setName('getSingleItems');
 
-        $this->get('/{id:[0-9]+}/linksWithItems', '\\Lchski\\ItemController')->setName('getSingleLinksWithItems');
+            $this->get('/linksWithItems', '\\Lchski\\ItemController')->setName('getSingleLinksWithItems');
 
-        $this->put('/{id:[0-9]+}', '\\Lchski\\ItemController')->setName('updateSingle');
+            $this->put('', '\\Lchski\\ItemController')->setName('updateSingle');
 
-        $this->delete('/{id:[0-9]+}', '\\Lchski\\ItemController')->setName('deleteSingle');
+            $this->delete('', '\\Lchski\\ItemController')->setName('deleteSingle');
+        });
     });
 
     // Group routes related to Links.
@@ -36,12 +38,14 @@ $app->group('/v1', function () {
 
         $this->post('', '\\Lchski\\LinkController')->setName('createSingle');
 
-        $this->get('/{id:[0-9]+}', '\\Lchski\\LinkController')->setName('getSingle');
+        $this->group('/{id:[0-9]+}', function () {
+            $this->get('', '\\Lchski\\LinkController')->setName('getSingle');
 
-        $this->get('/{id:[0-9]+}/items', '\\Lchski\\LinkController')->setName('getSingleItems');
+            $this->get('/items', '\\Lchski\\LinkController')->setName('getSingleItems');
 
-        $this->put('/{id:[0-9]+}', '\\Lchski\\LinkController')->setName('updateSingle');
+            $this->put('', '\\Lchski\\LinkController')->setName('updateSingle');
 
-        $this->delete('/{id:[0-9]+}', '\\Lchski\\LinkController')->setName('deleteSingle');
+            $this->delete('', '\\Lchski\\LinkController')->setName('deleteSingle');
+        });
     });
 });
