@@ -37,15 +37,15 @@ class Item extends Model
 
     public function linksWithItems()
     {
+        $cleanedLinksWithItems = [];
+
         $linksWithItems = $this->with('links.items')->where('items.id', [$this->id])->get()[0]['links'];
 
-        $cleanedLinksWithItems = $linksWithItems->each(function ($linkWithItems) {
-            $linkWithItems->items = $linkWithItems['items']->reject(function ($item) {
-                return $item->id == $this->id;
-            });
-
-            return $linkWithItems;
-        });
+        foreach ($linksWithItems as $linkWithItems) {
+            $cleanedLinksWithItems[] = $linkWithItems->items->reject(function ($item) {
+               return $item->id == $this->id;
+            })->values();
+        }
 
         return $cleanedLinksWithItems;
     }
