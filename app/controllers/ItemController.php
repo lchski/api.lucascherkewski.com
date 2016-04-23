@@ -58,7 +58,11 @@ class ItemController extends BaseController implements Controller
 
         $writeSuccess = $this->c->storage->put($filePath, $this->request->getParsedBody()['content']);
 
-        return $this->buildResponse(['content' => $this->c->storage->read($filePath)]);
+        if ($writeSuccess) {
+            return $this->buildResponse(['content' => $this->c->storage->read($filePath)]);
+        }
+
+        return $this->buildResponse(['content' => 'Error: Could not write file.']);
     }
 
     /**
