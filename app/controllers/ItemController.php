@@ -54,7 +54,13 @@ class ItemController extends BaseController implements Controller
      */
     public function getSingleContent()
     {
-        return $this->buildResponse(['content' => $this->c->storage->read('items/' . $this->args['id'] . '.md')]);
+        $filePath = 'items/' . $this->args['id'] . '.md';
+
+        if ($this->c->storage->has($filePath)) {
+            return $this->buildResponse(['content' => $this->c->storage->read($filePath)]);
+        }
+
+        return $this->buildResponse(['content' => 'Error: Item content not found.']);
     }
 
     /**
