@@ -44,9 +44,27 @@ class ItemController extends BaseController implements Controller
     }
 
     /**
+     * Set the content for a specific Item.
+     *
+     * Writes to a file located in the storage directory: items/{Item->id}.md
+     *
+     * Path: /items/{id:[0-9]+}/content (POST/PUT)
+     *
+     * @return Response
+     */
+    public function setSingleContent()
+    {
+        $filePath = 'items/' . $this->args['id'] . '.md';
+
+        $writeSuccess = $this->c->storage->put($filePath, $this->request->getParsedBody()['content']);
+
+        return $this->buildResponse(['content' => $this->c->storage->read($filePath)]);
+    }
+
+    /**
      * Retrieve the content for a specific Item.
      *
-     * The file should be located in the storage directory: items/{item->ID}.md
+     * The file should be located in the storage directory: items/{Item->id}.md
      *
      * Path: /items/{id:[0-9]+}/content
      *
@@ -58,6 +76,26 @@ class ItemController extends BaseController implements Controller
 
         if ($this->c->storage->has($filePath)) {
             return $this->buildResponse(['content' => $this->c->storage->read($filePath)]);
+        }
+
+        return $this->buildResponse(['content' => 'Error: Item content not found.']);
+    }
+
+    /**
+     * Delete the content for a specific Item.
+     *
+     * Deletes a file located in the storage directory: items/{Item->id}.md
+     *
+     * Path: /items/{id:[0-9]+}/content (DELETE)
+     *
+     * @return Response
+     */
+    public function deleteSingleContent()
+    {
+        $filePath = 'items/' . $this->args['id'] . '.md';
+
+        if ($this->c->storage->has($filePath)) {
+            return $this->buildResponse($this->c->storage->delete($filePath));
         }
 
         return $this->buildResponse(['content' => 'Error: Item content not found.']);

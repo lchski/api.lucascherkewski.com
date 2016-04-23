@@ -19,7 +19,13 @@ $app->group('/v1', function () {
         $this->group('/{id:[0-9]+}', function () {
             $this->get('', '\\Lchski\\ItemController')->setName('getSingle');
 
-            $this->get('/content', '\\Lchski\\ItemController')->setName('getSingleContent');
+            $this->group('/content', function() {
+                $this->map(['POST', 'PUT'], '', '\\Lchski\\ItemController')->setName('setSingleContent');
+
+                $this->get('', '\\Lchski\\ItemController')->setName('getSingleContent');
+
+                $this->delete('', '\\Lchski\\ItemController')->setName('deleteSingleContent');
+            });
 
             $this->get('/links', '\\Lchski\\ItemController')->setName('getSingleLinks');
 
