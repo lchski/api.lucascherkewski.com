@@ -44,6 +44,20 @@ class ItemController extends BaseController implements Controller
     }
 
     /**
+     * Retrieve the content for a specific Item.
+     *
+     * The file should be located in the storage directory: items/{item->ID}.md
+     *
+     * Path: /items/{id:[0-9]+}/content
+     *
+     * @return Response
+     */
+    public function getSingleContent()
+    {
+        return $this->buildResponse(['content' => $this->c->storage->read('items/' . $this->args['id'] . '.md')]);
+    }
+
+    /**
      * Get the links for a specific Item.
      *
      * Path: /items/{id:[0-9]+}/links

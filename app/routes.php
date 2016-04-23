@@ -19,6 +19,8 @@ $app->group('/v1', function () {
         $this->group('/{id:[0-9]+}', function () {
             $this->get('', '\\Lchski\\ItemController')->setName('getSingle');
 
+            $this->get('/content', '\\Lchski\\ItemController')->setName('getSingleContent');
+
             $this->get('/links', '\\Lchski\\ItemController')->setName('getSingleLinks');
 
             $this->get('/items', '\\Lchski\\ItemController')->setName('getSingleItems');
