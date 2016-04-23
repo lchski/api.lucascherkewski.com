@@ -37,20 +37,9 @@ class Item extends Model
 
     public function linksWithItems()
     {
-        $linksWithItems = $this->with('links.items')->where('items.id', [$this->id])->get()[0]['links'];
-
-        error_log('Links with items:');
-        error_log(print_r($linksWithItems, 1));
-
-        foreach ($linksWithItems as $linkWithItems) {
-            for ($index = 0, $size = $linkWithItems['items']->count(); $index < $size; $index++) {
-                if ($linkWithItems['items'][$index]->id == $this->id) {
-                    unset($linkWithItems['items'][$index]);
-                }
-            }
-
-            $linkWithItems['items'] = $linkWithItems['items']->values();
-        }
+        $linksWithItems = $this->with(['links.items' => function ($query) {
+            $query->whereNotIn('items.id', [$this->id]);
+        }])->where('items.id', [$this->id])->get()[0]['links'];
 
         return $linksWithItems;
     }
