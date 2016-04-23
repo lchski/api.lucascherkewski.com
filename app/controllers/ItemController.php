@@ -81,7 +81,13 @@ class ItemController extends BaseController implements Controller
      */
     public function updateSingle()
     {
-        return $this->buildResponse(Item::find((int)$this->args['id'])->update($this->request->getParsedBody()));
+        $updateSuccess = Item::find((int)$this->args['id'])->update($this->request->getParsedBody());
+
+        if ($updateSuccess) {
+            return $this->buildResponse(Item::find((int)$this->args['id']));
+        }
+
+        return $this->buildResponse('update failed');
     }
 
     /**

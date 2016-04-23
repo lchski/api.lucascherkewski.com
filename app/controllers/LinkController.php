@@ -70,7 +70,13 @@ class LinkController extends BaseController implements Controller
      */
     public function updateSingle()
     {
-        return $this->buildResponse(Link::find((int)$this->args['id'])->update($this->request->getParsedBody()));
+        $updateSuccess = Link::find((int)$this->args['id'])->update($this->request->getParsedBody());
+
+        if ($updateSuccess) {
+            $this->buildResponse(Link::find((int)$this->args['id']));
+        }
+
+        return $this->buildResponse('update failed');
     }
 
     /**
