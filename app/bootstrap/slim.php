@@ -12,8 +12,16 @@ $configuration = [
 // Create our custom Slim container.
 $c = new \Slim\Container($configuration);
 
+// Configure Slim's HTTP caching plugin.
 $c['cache'] = function () {
     return new \Slim\HttpCache\CacheProvider();
+};
+
+// Configure storage provider, Flysystem.
+$c['storage'] = function() {
+    $adapter = new \League\Flysystem\Adapter\Local(__DIR__ . '/../../../storage/');
+
+    return new \League\Flysystem\Filesystem($adapter);
 };
 
 // Boot up our Slim instance.
